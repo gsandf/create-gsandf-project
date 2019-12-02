@@ -1,0 +1,19 @@
+{
+  "name": "@test/schema",
+  "version": "0.1.0",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "date-fns": "^2.8.0",
+    "path-to-regexp": "^6.1.0",
+    "sift": "^8.5.1",
+    "unchanged": "^2.2.1"
+  },
+  "devDependencies": {
+    "amper-scripts": "^0.0.4-6",
+    "jest": "^24.9.0"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}

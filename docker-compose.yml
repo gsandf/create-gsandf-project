@@ -1,0 +1,30 @@
+version: "3.3"
+
+services:
+  db:
+    image: mariadb
+    env_file: .env
+    networks:
+      - wordpress-dev-network
+    ports:
+      - 3306:3306
+    restart: unless-stopped
+
+  wordpress:
+    build: ./packages/wordpress-image
+    depends_on:
+      - db
+    env_file: .env
+    networks:
+      - wordpress-dev-network
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    volumes:
+      - ./packages/wordpress-theme:/wp/wp-content/themes/custom-theme
+
+networks:
+  wordpress-dev-network:
+
+volumes:
+  wordpress:
