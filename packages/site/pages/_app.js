@@ -1,4 +1,4 @@
-import App from 'next/app';
+import NextApp from 'next/app';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyles from '../components/GlobalStyles';
@@ -9,9 +9,10 @@ const theme = {
   }
 };
 
-export default class MyApp extends App {
+export default class App extends NextApp {
   render() {
     const { Component, pageProps } = this.props;
+
     return (
       <ThemeProvider theme={theme}>
         <GlobalStyles />
