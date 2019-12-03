@@ -17,8 +17,6 @@ const FeaturedImage = styled.div`
 `;
 
 function Posts({ data, errors }) {
-  console.log({ data, errors });
-
   const pending = !data || !data.post;
 
   if (pending) {
