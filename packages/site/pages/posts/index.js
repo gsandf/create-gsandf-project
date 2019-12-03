@@ -13,7 +13,6 @@ class Posts extends React.Component {
       query: /* GraphQL */ `
         query getPosts {
           allPost {
-            id
             path
             title
             featuredMedia {
@@ -58,9 +57,9 @@ class Posts extends React.Component {
           <h1>Posts</h1>
 
           <PostList>
-            {data.allPost.map(({ featuredMedia, id, path, title }) => (
+            {data.allPost.map(({ featuredMedia, path, title }) => (
               <Box background={featuredMedia.sizes.medium.url} key={path}>
-                <Link href={`/posts/${id}`}>
+                <Link href={path}>
                   <a>{title}</a>
                 </Link>
               </Box>

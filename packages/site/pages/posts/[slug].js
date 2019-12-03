@@ -17,16 +17,6 @@ const FeaturedImage = styled.div`
 `;
 
 function Posts({ data, errors }) {
-  const pending = !data || !data.post;
-
-  if (pending) {
-    return (
-      <BasicTemplate>
-        <Spinner />
-      </BasicTemplate>
-    );
-  }
-
   if (errors) {
     return (
       <BasicTemplate>
@@ -37,20 +27,32 @@ function Posts({ data, errors }) {
     );
   }
 
+  const pending = !data || !data.allPost;
+
+  if (pending) {
+    return (
+      <BasicTemplate>
+        <Spinner />
+      </BasicTemplate>
+    );
+  }
+
+  const { content, featuredMedia, title } = data.allPost[0];
+
   return (
     <BasicTemplate>
-      {data.post.featuredMedia && (
-        <FeaturedImage background={data.post.featuredMedia.sizes.full.url} />
+      {featuredMedia && (
+        <FeaturedImage background={featuredMedia.sizes.full.url} />
       )}
 
       <Container>
-        <h1>{data.post.title}</h1>
+        <h1>{title}</h1>
 
         <Link href="/posts">
           <a>&larr; Back</a>
         </Link>
 
-        <article dangerouslySetInnerHTML={{ __html: data.post.content }} />
+        <article dangerouslySetInnerHTML={{ __html: content }} />
       </Container>
     </BasicTemplate>
   );
@@ -59,8 +61,8 @@ function Posts({ data, errors }) {
 Posts.getInitialProps = ({ query }) => {
   return apiFetch({
     query: /* GraphQL */ `
-      query getPost($params: JSON) {
-        post(urlParams: $params) {
+      query getPost($slug: String!) {
+        allPost(filter: { slug: { eq: $slug } }) {
           content
           featuredMedia {
             sizes {
@@ -73,25 +75,25 @@ Posts.getInitialProps = ({ query }) => {
         }
       }
     `,
-    variables: {
-      params: { id: query.id }
-    }
+    variables: { slug: query.slug }
   });
 };
 
 Posts.propTypes = {
   data: PropTypes.shape({
-    post: PropTypes.shape({
-      content: PropTypes.string.isRequired,
-      featuredMedia: PropTypes.shape({
-        sizes: PropTypes.shape({
-          full: PropTypes.shape({
-            url: PropTypes.string.isRequired
+    allPost: PropTypes.arrayOf(
+      PropTypes.shape({
+        content: PropTypes.string.isRequired,
+        featuredMedia: PropTypes.shape({
+          sizes: PropTypes.shape({
+            full: PropTypes.shape({
+              url: PropTypes.string.isRequired
+            })
           })
-        })
-      }),
-      title: PropTypes.string.isRequired
-    })
+        }),
+        title: PropTypes.string.isRequired
+      })
+    )
   }),
   errors: PropTypes.array
 };
