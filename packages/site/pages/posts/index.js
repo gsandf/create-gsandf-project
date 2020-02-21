@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { get } from 'unchanged';
 import { apiFetch } from '../../api';
 import { Container } from '../../components/Base';
 import Spinner from '../../components/Spinner';
@@ -58,7 +59,10 @@ class Posts extends React.Component {
 
           <PostList>
             {data.allPost.map(({ featuredMedia, path, title }) => (
-              <Box background={featuredMedia.sizes.medium.url} key={path}>
+              <Box
+                background={get('sizes.medium.url', featuredMedia)}
+                key={path}
+              >
                 <Link href={path}>
                   <a>{title}</a>
                 </Link>
