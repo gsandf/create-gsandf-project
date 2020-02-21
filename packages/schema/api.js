@@ -19,7 +19,7 @@ function formatPost(post) {
 }
 
 /**
- * @typedef {{ urlParams }} ExtraOptions
+ * @typedef {{ urlParams? }} ExtraOptions
  * @typedef {import('axios').AxiosRequestConfig & ExtraOptions} WPFetchOptions
  */
 
