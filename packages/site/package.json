@@ -20,7 +20,7 @@
   },
   "scripts": {
     "build": "next build",
-    "dev": "node -r esm server.js",
+    "dev": "nodemon -r esm server.js",
     "start": "NODE_ENV=production node -r esm server.js",
     "test": "jest"
   },
@@ -28,7 +28,7 @@
     "@types/node": "^13.7.4",
     "@types/react": "^16.9.21",
     "babel-plugin-styled-components": "^1.10.6",
-    "next-transpile-modules": "^2.3.1",
+    "nodemon": "^2.0.2",
     "typescript": "^3.8.2"
   }
 }

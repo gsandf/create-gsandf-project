@@ -1,6 +1,6 @@
-import * as schema from '@test/schema';
 import { GraphQLServer } from 'graphql-yoga';
 import next from 'next';
+import * as schema from '@test/schema';
 
 const graphqlOptions = {
   endpoint: '/graphql',
@@ -15,6 +15,11 @@ const handle = app.getRequestHandler();
 
 const server = new GraphQLServer(schema);
 
+server.start(graphqlOptions, ({ playground, port }) => {
+  console.log(` > Site @ http://localhost:${port}/`);
+  console.log(` > Playground @ http://localhost:${port}${playground}`);
+});
+
 app.prepare().then(() => {
   server.express.use((req, res, next) => {
     // Hijack the GraphQL endpoint for GraphQL Yoga to use
@@ -22,9 +27,4 @@ app.prepare().then(() => {
     // Allow Next.js to handle all other requets
     return handle(req, res);
   });
-});
-
-server.start(graphqlOptions, ({ playground, port }) => {
-  console.log(` > Site @ http://localhost:${port}/`);
-  console.log(` > Playground @ http://localhost:${port}${playground}`);
 });
