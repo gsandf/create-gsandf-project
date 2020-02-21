@@ -9,7 +9,7 @@ export const PostList = styled.ul`
   row-gap: 1em;
 `;
 
-export const Box = styled.li`
+export const Box = styled.li<{ background: string }>`
   background-image: url(${p => p.background});
   background-position: center;
   background-repeat: no-repeat;

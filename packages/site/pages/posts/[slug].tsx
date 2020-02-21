@@ -2,12 +2,13 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import { apiFetch } from '../../api';
+import { apiFetch, GraphQLQuery, GraphQLResponse } from '../../api';
 import { Container } from '../../components/Base';
 import Spinner from '../../components/Spinner';
 import BasicTemplate from '../../templates/Basic';
+import { NextPageContext } from 'next';
 
-const FeaturedImage = styled.div`
+const FeaturedImage = styled.div<{ background: string }>`
   background-image: url("${p => p.background}");
   background-position: center;
   background-repeat: no-repeat;
@@ -16,7 +17,7 @@ const FeaturedImage = styled.div`
   width: 100%;
 `;
 
-function Posts({ data, errors }) {
+function Posts({ data, errors }: GraphQLResponse) {
   if (errors) {
     return (
       <BasicTemplate>
@@ -58,7 +59,7 @@ function Posts({ data, errors }) {
   );
 }
 
-Posts.getInitialProps = ({ query }) => {
+Posts.getInitialProps = ({ query }: NextPageContext) => {
   return apiFetch({
     query: /* GraphQL */ `
       query getPost($slug: String!) {
