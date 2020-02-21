@@ -4,6 +4,7 @@ import { compile } from 'path-to-regexp';
 const wordpressEndpoint = process.env.WORDPRESS_API || 'http://localhost:8080';
 
 export const request = axios.create({
+  auth: { username: 'admin', password: 'admin' },
   baseURL: `${wordpressEndpoint}/wp-json`,
   headers: { 'Content-Type': 'application/json' }
 });
@@ -14,6 +15,7 @@ function formatPost(post) {
     ...post.acf,
     dateCreated: post.date,
     dateModified: post.modified,
+    path: post.path || '',
     title: post.title.rendered
   };
 }
@@ -32,8 +34,13 @@ function formatPost(post) {
  */
 export async function wpFetch(path, { urlParams, ...options } = {}) {
   const compiledPath = urlParams ? compile(path)(urlParams) : path;
-  const response = await request(compiledPath, options);
-  const { data } = response;
 
-  return Array.isArray(data) ? data.map(formatPost) : formatPost(data);
+  try {
+    const response = await request(compiledPath, options);
+    const { data } = response;
+    return Array.isArray(data) ? data.map(formatPost) : formatPost(data);
+  } catch (error) {
+    console.error('Error when fetching path...');
+    console.error({ path, message: error.message, urlParams, options });
+  }
 }

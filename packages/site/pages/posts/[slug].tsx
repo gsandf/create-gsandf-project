@@ -1,12 +1,11 @@
+import { NextPageContext } from 'next';
 import Link from 'next/link';
-import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import { apiFetch, GraphQLQuery, GraphQLResponse } from '../../api';
+import { apiFetch, GraphQLResponse } from '../../api';
 import { Container } from '../../components/Base';
 import Spinner from '../../components/Spinner';
 import BasicTemplate from '../../templates/Basic';
-import { NextPageContext } from 'next';
 
 const FeaturedImage = styled.div<{ background: string }>`
   background-image: url("${p => p.background}");
@@ -28,7 +27,7 @@ function Posts({ data, errors }: GraphQLResponse) {
     );
   }
 
-  const pending = !data || !data.allPost;
+  const pending = !data || !data.post;
 
   if (pending) {
     return (
@@ -38,7 +37,7 @@ function Posts({ data, errors }: GraphQLResponse) {
     );
   }
 
-  const { content, featuredMedia, title } = data.allPost[0];
+  const { content, featuredMedia, title } = data.post;
 
   return (
     <BasicTemplate>
@@ -62,8 +61,8 @@ function Posts({ data, errors }: GraphQLResponse) {
 Posts.getInitialProps = ({ query }: NextPageContext) => {
   return apiFetch({
     query: /* GraphQL */ `
-      query getPost($slug: String!) {
-        allPost(filter: { slug: { eq: $slug } }) {
+      query getPost($preview: Boolean, $slug: String!) {
+        post(preview: $preview, slug: $slug) {
           content
           featuredMedia {
             sizes {
@@ -76,27 +75,8 @@ Posts.getInitialProps = ({ query }: NextPageContext) => {
         }
       }
     `,
-    variables: { slug: query.slug }
+    variables: { preview: query.preview === 'true', slug: query.slug }
   });
-};
-
-Posts.propTypes = {
-  data: PropTypes.shape({
-    allPost: PropTypes.arrayOf(
-      PropTypes.shape({
-        content: PropTypes.string.isRequired,
-        featuredMedia: PropTypes.shape({
-          sizes: PropTypes.shape({
-            full: PropTypes.shape({
-              url: PropTypes.string.isRequired
-            })
-          })
-        }),
-        title: PropTypes.string.isRequired
-      })
-    )
-  }),
-  errors: PropTypes.array
 };
 
 export default Posts;

@@ -1,3 +1,4 @@
+import { get } from 'unchanged';
 import { wpFetch } from '../api';
 import { filterArray } from '../utils';
 
@@ -74,8 +75,45 @@ export const resolvers = {
       wpFetch('/wp/v2/pages').then(data => filterArray(data, filter)),
     allPost: (_, { filter }) =>
       wpFetch('/wp/v2/posts').then(data => filterArray(data, filter)),
-    page: (_, args) => wpFetch('/wp/v2/pages/:id', args),
-    post: (_, args) => wpFetch('/wp/v2/posts/:id', args)
+    page: (_, { id, preview, slug }) => {
+      if (!id) {
+        if (!slug) {
+          throw new Error('either `id` or `slug` is required');
+        }
+
+        id = await wpFetch('/wp/v2/pages', { query: { slug } }).then(pages =>
+          get('0.id', pages)
+        );
+      }
+
+      if (preview) {
+        return wpFetch('/wp/v2/pages/:id/revisions', {
+          urlParams: { id: id || 0 }
+        }).then(results => results[0]);
+      }
+
+      return wpFetch('/wp/v2/pages/:id', { urlParams: { id } });
+    }
+  },
+    post: async (_, { id, preview, slug }) => {
+      if (!id) {
+        if (!slug) {
+          throw new Error('either `id` or `slug` is required');
+        }
+
+        id = await wpFetch('/wp/v2/posts', { query: { slug } }).then(posts =>
+          get('0.id', posts)
+        );
+      }
+
+      if (preview) {
+        return wpFetch('/wp/v2/posts/:id/revisions', {
+          urlParams: { id: id || 0 }
+        }).then(results => results[0]);
+      }
+
+      return wpFetch('/wp/v2/posts/:id', { urlParams: { id } });
+    }
   }
 };
 
@@ -146,7 +184,7 @@ export const typeDefs = /* GraphQL */ `
   extend type Query {
     allPage(filter: PostFilter): [Page]
     allPost(filter: PostFilter): [Post]
-    page(urlParams: JSON): Page
-    post(urlParams: JSON): Post
+    page(id: ID, preview: Boolean, slug: String): Page
+    post(id: ID, preview: Boolean, slug: String): Post
   }
 `;

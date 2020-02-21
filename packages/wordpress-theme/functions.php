@@ -14,3 +14,9 @@ require_once 'inc/custom-read-more.php';
 
 // Add extra information to WordPress API responses
 require_once 'inc/customize-wp-api.php';
+
+// Customize the WordPress preview button behavior
+require_once 'inc/preview-post-link.php';
+
+// Enable Basic Auth for the WordPress API
+require_once 'inc/enable-basic-auth.php';
