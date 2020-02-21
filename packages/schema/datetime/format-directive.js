@@ -1,5 +1,5 @@
-import { format, parseISO } from 'date-fns';
-import { defaultFieldResolver, GraphQLString } from 'graphql';
+import { format, formatDistanceToNow, parseISO } from 'date-fns';
+import { defaultFieldResolver, GraphQLBoolean, GraphQLString } from 'graphql';
 import { SchemaDirectiveVisitor } from 'graphql-tools';
 import { serialize } from './parser';
 
@@ -15,15 +15,24 @@ class FormattableDateDirective extends SchemaDirectiveVisitor {
       type: GraphQLString
     });
 
+    field.args.push({
+      name: 'formatRelative',
+      type: GraphQLBoolean
+    });
+
     field.resolve = async function(
       source,
-      { format, ...otherArgs },
+      { format, formatRelative, ...otherArgs },
       context,
       info
     ) {
       const value = await resolve.call(this, source, otherArgs, context, info);
 
       const date = serialize(value);
+
+      if (formatRelative) {
+        return formatDistanceToNow(new Date(date), { addSuffix: true });
+      }
 
       // If a format argument was not provided, default to the optional
       // defaultFormat argument taken by the @date directive:
