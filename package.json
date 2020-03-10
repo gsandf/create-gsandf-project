@@ -7,7 +7,7 @@
   "license": "MIT",
   "devDependencies": {
     "@prettier/plugin-php": "^0.11.2",
-    "amper-scripts": "^0.0.4-6",
+    "amper-scripts": "^1.0.0-0",
     "create-razzle-app": "^3.0.0",
     "npm-run-all": "^4.1.5",
     "prettier": "1.19.1"
@@ -21,6 +21,7 @@
     "format": "run-p 'theme:prettier --write' 'site format --write'",
     "schema": "yarn workspace @test/schema",
     "site": "yarn workspace @test/site",
+    "start": "run-p 'up' 'dev'",
     "test": "run-p 'schema test'",
     "theme:prettier": "prettier packages/wordpress-theme ./**/*.{php,js}",
     "up": "docker-compose up --detach",

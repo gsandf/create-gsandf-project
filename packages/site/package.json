@@ -11,6 +11,7 @@
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "graphql-yoga": "^1.18.3",
+    "http-status-codes": "^1.4.0",
     "next": "^9.1.4",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
@@ -21,12 +22,17 @@
   "scripts": {
     "build": "next build",
     "dev": "nodemon -r esm server.js",
+    "format": "amper-scripts format-write *.js **/*.js",
+    "format-check": "amper-scripts format-check *.js **/*.js",
+    "lint": "amper-scripts lint --config ../../.eslintrc.js *.js **/*.js",
     "start": "NODE_ENV=production node -r esm server.js",
-    "test": "jest"
+    "test": "jest",
+    "validate": "run-p format-check lint"
   },
   "devDependencies": {
     "@types/node": "^13.7.4",
     "@types/react": "^16.9.21",
+    "amper-scripts": "^1.0.0-0",
     "babel-plugin-styled-components": "^1.10.6",
     "nodemon": "^2.0.2",
     "typescript": "^3.8.2"
