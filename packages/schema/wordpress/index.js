@@ -75,7 +75,7 @@ export const resolvers = {
       wpFetch('/wp/v2/pages').then(data => filterArray(data, filter)),
     allPost: (_, { filter }) =>
       wpFetch('/wp/v2/posts').then(data => filterArray(data, filter)),
-    page: (_, { id, preview, slug }) => {
+    page: async (_, { id, preview, slug }) => {
       if (!id) {
         if (!slug) {
           throw new Error('either `id` or `slug` is required');
@@ -93,8 +93,7 @@ export const resolvers = {
       }
 
       return wpFetch('/wp/v2/pages/:id', { urlParams: { id } });
-    }
-  },
+    },
     post: async (_, { id, preview, slug }) => {
       if (!id) {
         if (!slug) {
