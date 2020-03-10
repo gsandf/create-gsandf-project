@@ -86,13 +86,15 @@ export const resolvers = {
         );
       }
 
+      const pageData = await wpFetch('/wp/v2/pages/:id', { urlParams: { id } });
+
       if (preview) {
-        return wpFetch('/wp/v2/pages/:id/revisions', {
-          urlParams: { id: id || 0 }
-        }).then(results => results[0]);
+        return wpFetch(get('_links.version-history.0.href', pageData)).then(
+          results => results[0]
+        );
       }
 
-      return wpFetch('/wp/v2/pages/:id', { urlParams: { id } });
+      return pageData;
     },
     post: async (_, { id, preview, slug }) => {
       if (!id) {
@@ -105,13 +107,15 @@ export const resolvers = {
         );
       }
 
+      const postData = await wpFetch('/wp/v2/posts/:id', { urlParams: { id } });
+
       if (preview) {
-        return wpFetch('/wp/v2/posts/:id/revisions', {
-          urlParams: { id: id || 0 }
-        }).then(results => results[0]);
+        return wpFetch(get('_links.version-history.0.href', postData)).then(
+          results => results[0]
+        );
       }
 
-      return wpFetch('/wp/v2/posts/:id', { urlParams: { id } });
+      return postData;
     }
   }
 };
