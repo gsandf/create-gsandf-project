@@ -11,7 +11,8 @@ const graphqlOptions = {
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
-const handle = app.getRequestHandler();
+
+const nextHandler = app.getRequestHandler();
 
 const server = new GraphQLServer(schema);
 
@@ -21,10 +22,5 @@ server.start(graphqlOptions, ({ playground, port }) => {
 });
 
 app.prepare().then(() => {
-  server.express.use((req, res, next) => {
-    // Hijack the GraphQL endpoint for GraphQL Yoga to use
-    if (req.path === graphqlOptions.endpoint) return next();
-    // Allow Next.js to handle all other requets
-    return handle(req, res);
-  });
+  server.express.use((req, res) => nextHandler(req, res));
 });
