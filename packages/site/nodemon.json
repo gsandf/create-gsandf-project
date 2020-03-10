@@ -1,3 +1,3 @@
 {
-  "watch": ["../schema/**"]
+  "watch": ["../schema/**", "server.js"]
 }
