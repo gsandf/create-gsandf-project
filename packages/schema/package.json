@@ -10,10 +10,19 @@
     "unchanged": "^2.2.1"
   },
   "devDependencies": {
-    "amper-scripts": "^0.0.4-6",
-    "jest": "^24.9.0"
+    "amper-scripts": "^1.0.0-0",
+    "ava": "^3.5.0"
+  },
+  "ava": {
+    "require": [
+      "esm"
+    ]
   },
   "scripts": {
-    "test": "jest"
+    "format": "amper-scripts format-write *.js **/*.js",
+    "format-check": "amper-scripts format-check *.js **/*.js",
+    "lint": "amper-scripts lint --config ../../.eslintrc.js *.js **/*.js",
+    "test": "ava",
+    "validate": "run-p format-check lint"
   }
 }

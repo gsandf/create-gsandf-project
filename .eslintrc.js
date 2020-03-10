@@ -1,7 +1,7 @@
 module.exports = {
-  env: {
-    jest: true
-  },
   extends: ['gsandf-react', 'prettier'],
-  parser: 'babel-eslint'
+  parser: 'babel-eslint',
+  rules: {
+    'react/prop-types': 'off'
+  }
 };
