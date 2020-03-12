@@ -1,6 +1,6 @@
 import { GraphQLServer } from 'graphql-yoga';
 import next from 'next';
-import * as schema from '@test/schema';
+import * as schema from '@gsandf/wordpress-graphql-schema';
 
 const graphqlOptions = {
   endpoint: '/graphql',
