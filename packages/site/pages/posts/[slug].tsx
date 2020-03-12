@@ -2,6 +2,7 @@ import { NextPageContext } from 'next';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
+import { get } from 'unchanged';
 import { apiFetch, GraphQLResponse } from '../../api';
 import { Container } from '../../components/Base';
 import Spinner from '../../components/Spinner';
@@ -38,12 +39,11 @@ function Posts({ data, errors }: GraphQLResponse) {
   }
 
   const { content, featuredMedia, title } = data.post;
+  const featuredImage = get('sizes.full.url', featuredMedia);
 
   return (
     <BasicTemplate>
-      {featuredMedia && (
-        <FeaturedImage background={featuredMedia.sizes.full.url} />
-      )}
+      {featuredImage && <FeaturedImage background={featuredImage} />}
 
       <Container>
         <h1>{title}</h1>
