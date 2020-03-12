@@ -1,6 +1,6 @@
+import { createSchema } from '@gsandf/wordpress-graphql-schema';
 import { GraphQLServer } from 'graphql-yoga';
 import next from 'next';
-import * as schema from '@gsandf/wordpress-graphql-schema';
 
 const graphqlOptions = {
   endpoint: '/graphql',
@@ -9,12 +9,19 @@ const graphqlOptions = {
   subscriptions: '/graphql'
 };
 
+const wordPressOptions = {
+  auth: { username: 'admin', password: 'admin' },
+  baseURL: process.env.WORDPRESS_API || 'http://localhost:8080/wp-json'
+};
+
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 
 const nextHandler = app.getRequestHandler();
 
-const server = new GraphQLServer(schema);
+const wordPressSchema = createSchema(wordPressOptions);
+
+const server = new GraphQLServer({ ...wordPressSchema });
 
 server.start(graphqlOptions, ({ playground, port }) => {
   console.log(` > Site @ http://localhost:${port}/`);

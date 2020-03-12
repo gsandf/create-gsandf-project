@@ -1,13 +1,16 @@
 import axios from 'axios';
 import { compile } from 'path-to-regexp';
 
-const wordpressEndpoint = process.env.WORDPRESS_API || 'http://localhost:8080';
+export let request;
 
-export const request = axios.create({
-  auth: { username: 'admin', password: 'admin' },
-  baseURL: `${wordpressEndpoint}/wp-json`,
+const defaultOptions = {
+  baseURL: 'localhost:8080/wp-json',
   headers: { 'Content-Type': 'application/json' }
-});
+};
+
+export const setRequestOptions = options => {
+  request = axios.create({ ...defaultOptions, ...options });
+};
 
 function formatPost(post) {
   return {
