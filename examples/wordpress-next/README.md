@@ -1,4 +1,4 @@
-# Headless WordPress Starter
+# WordPress + Next.js Starter
 
 > React you a WordPress for much good
 
@@ -10,40 +10,43 @@ from improvements over time.
 
 **What's included:**
 
-- :green_heart: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/),
-  and [Jest](https://jestjs.io/) are set up and ready to go (or be modified
-  however you want)
-- :atom_symbol: React with server-side rendering and code-splitting
+- :atom_symbol: A full React.js site with server-side rendering and
+  code-splitting
+- :green_heart: [ESLint], [Prettier], and [Jest] are set up and ready to go (or
+  be modified however you want)
 - :wavy_dash: A WordPress theme that turns the CMS into a headless CMS
 - :whale: Docker images for quick local development
 
-## Quick Start
+## How to Use
 
-With [Yarn](https://yarnpkg.com/en/docs/) installed, run:
+With [Yarn] installed, run:
 
 ```bash
-# Clone the repo
-git clone https://bitbucket.org/gsf-interactive/headless-wordpress-starter
-
-# Run the setup command
-yarn bootstrap
+yarn create @gsandf/site --example wordpress-next new-site-name
 ```
 
 ## Useful Commands
 
-|                  |                                                                                      |
-| ---------------- | ------------------------------------------------------------------------------------ |
-| `yarn bootstrap` | Installs all dependencies and builds docker images                                   |
-| `yarn dev`       | Runs the project locally in development mode                                         |
-| `rs`             | While the project is running, you can type `rs` into the terminal to quickly restart |
+|                  |                                                    |
+| ---------------- | -------------------------------------------------- |
+| `yarn bootstrap` | Installs all dependencies and builds docker images |
+| `yarn dev`       | Runs the project in development mode               |
+| `yarn start`     | Runs the project in production mode                |
 
 ## See Also
 
 For more of a deep dive, see the docs for the projects this one depends on:
 
-- [GraphQL Yoga](https://github.com/prisma-labs/graphql-yoga) - sets up a GraphQL/Express server
-- [Razzle](https://github.com/jaredpalmer/razzle) - React SSR
+- [GraphQL Yoga] - sets up a GraphQL/Express server
+- [Next.js] - handles server-side rendering and routing
 
 ## License
 
 UNLICENSED
+
+[eslint]: https://eslint.org/
+[graphql yoga]: https://github.com/prisma-labs/graphql-yoga
+[jest]: https://jestjs.io/
+[next.js]: https://nextjs.org/
+[prettier]: https://prettier.io/
+[yarn]: https://yarnpkg.com/en/docs/
