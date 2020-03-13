@@ -1,0 +1,34 @@
+{
+  "name": "example",
+  "version": "0.0.0",
+  "private": true,
+  "author": "GS&F Devs <mindreactor@gsandf.com> (https://gsandf.com/)",
+  "license": "MIT",
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.11.2",
+    "amper-scripts": "^1.0.0-0",
+    "create-razzle-app": "^3.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "1.19.1"
+  },
+  "scripts": {
+    "bootstrap": "bash -c ./bootstrap.sh",
+    "build:image": "docker-compose build",
+    "debug": "yarn workspace @example/site dev",
+    "dev": "yarn workspace @example/site dev",
+    "down": "docker-compose down",
+    "format": "run-p 'theme:prettier --write' 'site format --write'",
+    "site": "yarn workspace @example/site",
+    "start": "yarn start:dev",
+    "start:dev": "WORDPRESS_API='https://dev.webapi.salata.com/wp-json' yarn dev",
+    "start:local": "run-p 'up' 'dev'",
+    "start:stage": "WORDPRESS_API='https://stage.webapi.salata.com/wp-json' yarn dev",
+    "start:prod": "WORDPRESS_API='https://webapi.salata.com/wp-json' yarn dev",
+    "theme:prettier": "prettier packages/wordpress-theme ./**/*.{php,js}",
+    "up": "docker-compose up --detach",
+    "validate": "run-p 'theme:prettier --check' 'site validate'"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

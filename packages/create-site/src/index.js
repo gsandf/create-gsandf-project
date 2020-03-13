@@ -13,13 +13,15 @@ async function main() {
       $ create-wordpress <project-directory>
 
     Options:
-      -h, --help  output usage information
-      --version   output the version number
+      -e, --example  the example to download
+      -h, --help     output usage information
+      --version      output the version number
   `,
     {
       autoHelp: true,
       autoVersion: true,
       flags: {
+        example: { type: 'string', alias: 'e', default: '_default' },
         help: { type: 'boolean', alias: 'h' },
         version: { type: 'boolean', alias: 'V' }
       }
@@ -28,7 +30,7 @@ async function main() {
 
   const projectDirectory = await getProjectDirectory(cli.input);
 
-  await downloadAndExtractExample(projectDirectory);
+  await downloadAndExtractExample(projectDirectory, example);
   await setupProject(projectDirectory);
 }
 
@@ -47,17 +49,31 @@ async function ensureDirectoryExists(path) {
 }
 
 /**
+ * Execute a command and stream output to the current process's output
+ * @param {string} file - the command to run
+ * @param {string[]} args? - the command's arguments
+ * @param {object} options? - options passed to execa
+ * @return {Promise<any>}
+ */
+async function execute(file, args, options) {
+  const command = execa(file, args, options);
+  command.stdout.pipe(process.stdout);
+  command.stderr.pipe(process.stderr);
+  return command;
+}
+
+/**
  * Downloads the example repo to a given directory
  * @param {string} path - path to extract to
  * @return {Promise<any>}
  */
-async function downloadAndExtractExample(path) {
+async function downloadAndExtractExample(path, example) {
   return promisepipe(
     got.stream(
       `https://codeload.github.com/blakek/wip-wordpress-next/tar.gz/master`
     ),
     tar.extract({ cwd: path, strip: 3 }, [
-      'wip-wordpress-next-master/packages/site'
+      `wip-wordpress-next-master/examples/${example}`
     ])
   );
 }
@@ -109,15 +125,15 @@ async function setupProject(root) {
     .then(JSON.parse);
 
   packageJSON.name = projectName;
-  packageJSON.version = '0.0.0';
+  packageJSON.version = '0.0.1';
 
   fs.writeFile(`${root}/package.json`, JSON.stringify(packageJSON, null, 2));
 
+  // Create a repo
+  await execute('git', ['init'], { cwd: root });
+
   // Install dependencies using Yarn
-  const yarnInstall = execa('yarn', ['install'], { cwd: root });
-  yarnInstall.stdout.pipe(process.stdout);
-  yarnInstall.stderr.pipe(process.stderr);
-  await yarnInstall;
+  await execute('yarn', ['install'], { cwd: root });
 }
 
 main().catch(error => {
