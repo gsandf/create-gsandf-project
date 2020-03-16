@@ -30,7 +30,7 @@ async function main() {
 
   const projectDirectory = await getProjectDirectory(cli.input);
 
-  await downloadAndExtractExample(projectDirectory, example);
+  await downloadAndExtractExample(projectDirectory, cli.flags.example);
   await setupProject(projectDirectory);
 }
 
