@@ -1,5 +1,5 @@
 {
-  "name": "@gsandf/create-site",
+  "name": "create-gsandf-site",
   "bin": "node -r esm src/index.js",
   "version": "0.1.0",
   "author": "GS&F Devs <mindreactor@gsandf.com> (https://gsandf.com/)",
