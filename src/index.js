@@ -70,10 +70,10 @@ async function execute(file, args, options) {
 async function downloadAndExtractExample(path, example) {
   return promisepipe(
     got.stream(
-      `https://codeload.github.com/blakek/wip-wordpress-next/tar.gz/master`
+      `https://codeload.github.com/gsandf/gsandf-create-site/tar.gz/master`
     ),
     tar.extract({ cwd: path, strip: 3 }, [
-      `wip-wordpress-next-master/examples/${example}`
+      `gsandf-create-site-master/examples/${example}`
     ])
   );
 }
