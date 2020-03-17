@@ -1,6 +1,6 @@
 {
   "name": "create-gsandf-site",
-  "bin": "node -r esm src/index.js",
+  "bin": "./src/commonjs-entry.js",
   "version": "0.1.0",
   "author": "GS&F Devs <mindreactor@gsandf.com> (https://gsandf.com/)",
   "license": "MIT",
