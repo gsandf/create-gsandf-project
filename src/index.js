@@ -21,7 +21,11 @@ async function main() {
       autoHelp: true,
       autoVersion: true,
       flags: {
-        example: { type: 'string', alias: 'e', default: '_default' },
+        example: {
+          required: true,
+          alias: 'e',
+          default: 'wordpress-next'
+        },
         help: { type: 'boolean', alias: 'h' },
         version: { type: 'boolean', alias: 'V' }
       }
