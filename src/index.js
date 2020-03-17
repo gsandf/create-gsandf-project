@@ -133,11 +133,17 @@ async function setupProject(root) {
 
   fs.writeFile(`${root}/package.json`, JSON.stringify(packageJSON, null, 2));
 
+  const cmd = (command, args) => execute(command, args, { cwd: root });
+
   // Create a repo
-  await execute('git', ['init'], { cwd: root });
+  await cmd('git', ['init']);
 
   // Install dependencies using Yarn
-  await execute('yarn', ['install'], { cwd: root });
+  await cmd('yarn', ['install']);
+
+  // Create an initial commit
+  await cmd('git', ['add', '-A']);
+  await cmd('git', ['commit', '-m', ':tada: initial commit']);
 }
 
 main().catch(error => {
