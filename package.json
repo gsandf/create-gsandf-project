@@ -1,5 +1,5 @@
 {
-  "name": "create-gsandf-site",
+  "name": "create-gsandf-project",
   "bin": "./src/commonjs-entry.js",
   "version": "0.1.0",
   "main": "./src/commonjs-entry.js",

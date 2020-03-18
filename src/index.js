@@ -74,10 +74,10 @@ async function execute(file, args, options) {
 async function downloadAndExtractExample(path, example) {
   return promisepipe(
     got.stream(
-      `https://codeload.github.com/gsandf/create-gsandf-site/tar.gz/master`
+      `https://codeload.github.com/gsandf/create-gsandf-project/tar.gz/master`
     ),
     tar.extract({ cwd: path, strip: 3 }, [
-      `create-gsandf-site-master/examples/${example}`
+      `create-gsandf-project-master/examples/${example}`
     ])
   );
 }
