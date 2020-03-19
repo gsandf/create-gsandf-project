@@ -1,0 +1,44 @@
+image: node:12
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - node
+        script:
+          - yarn install
+          - yarn validate
+
+  branches:
+    develop:
+      - step:
+          name: Deploy to Develop
+          caches:
+            - node
+          deployment: develop
+          script:
+            - yarn install
+            - yarn validate
+            - yarn deploy develop
+
+    staging:
+      - step:
+          name: Deploy to Staging
+          caches:
+            - node
+          deployment: staging
+          script:
+            - yarn install
+            - yarn validate
+            - yarn deploy staging
+
+    master:
+      - step:
+          name: Deploy to Production
+          caches:
+            - node
+          deployment: production
+          script:
+            - yarn install
+            - yarn validate
+            - yarn deploy production
