@@ -15,7 +15,7 @@ pipelines:
           name: Deploy to Develop
           caches:
             - node
-          deployment: develop
+          deployment: Test
           script:
             - yarn install
             - yarn validate
@@ -26,7 +26,7 @@ pipelines:
           name: Deploy to Staging
           caches:
             - node
-          deployment: staging
+          deployment: Staging
           script:
             - yarn install
             - yarn validate
@@ -37,7 +37,7 @@ pipelines:
           name: Deploy to Production
           caches:
             - node
-          deployment: production
+          deployment: Production
           script:
             - yarn install
             - yarn validate
