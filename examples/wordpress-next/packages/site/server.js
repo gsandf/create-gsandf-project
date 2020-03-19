@@ -23,11 +23,11 @@ const wordPressSchema = createSchema(wordPressOptions);
 
 const server = new GraphQLServer({ ...wordPressSchema });
 
-server.start(graphqlOptions, ({ playground, port }) => {
-  console.log(` > Site @ http://localhost:${port}/`);
-  console.log(` > Playground @ http://localhost:${port}${playground}`);
-});
-
 app.prepare().then(() => {
+  server.start(graphqlOptions, ({ playground, port }) => {
+    console.log(` > Site @ http://localhost:${port}/`);
+    console.log(` > Playground @ http://localhost:${port}${playground}`);
+  });
+
   server.express.use((req, res) => nextHandler(req, res));
 });
