@@ -1,12 +1,11 @@
 import Link from 'next/link';
-import PropTypes, { any } from 'prop-types';
 import React from 'react';
 import { get } from 'unchanged';
 import { apiFetch, GraphQLResponse } from '../../api';
 import { Container } from '../../components/Base';
+import { Box, PostList } from '../../components/Posts/components';
 import Spinner from '../../components/Spinner';
 import BasicTemplate from '../../templates/Basic';
-import { Box, PostList } from './components';
 
 interface PostProps extends GraphQLResponse {
   data: {
