@@ -9,6 +9,9 @@ main() {
 	yarn build
 	pm2 startOrReload ecosystem.config.js --env "$environment"
 	pm2 save
+
+	# Reload using the latest Nginx config
+	sudo nginx -t && sudo service nginx reload
 }
 
 main "$@"
