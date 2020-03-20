@@ -5,8 +5,9 @@ pipelines:
     - step:
         caches:
           - node
+          - yarn
         script:
-          - yarn install
+          - yarn install --prefer-offline
           - yarn validate
 
   branches:
@@ -15,9 +16,10 @@ pipelines:
           name: Deploy to Develop
           caches:
             - node
+            - yarn
           deployment: Test
           script:
-            - yarn install
+            - yarn install --prefer-offline
             - yarn validate
             - yarn deploy develop
 
@@ -26,9 +28,10 @@ pipelines:
           name: Deploy to Staging
           caches:
             - node
+            - yarn
           deployment: Staging
           script:
-            - yarn install
+            - yarn install --prefer-offline
             - yarn validate
             - yarn deploy staging
 
@@ -37,8 +40,13 @@ pipelines:
           name: Deploy to Production
           caches:
             - node
+            - yarn
           deployment: Production
           script:
-            - yarn install
+            - yarn install --prefer-offline
             - yarn validate
             - yarn deploy production
+
+definitions:
+  caches:
+    yarn: /usr/local/share/.cache/yarn
