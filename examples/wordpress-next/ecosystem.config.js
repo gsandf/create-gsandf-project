@@ -1,5 +1,5 @@
 const commonSetup = {
-  repo: 'git@bitbucket.org:gsf-interactive/eurekamdf.com.git',
+  repo: process.env.BITBUCKET_GIT_SSH_ORIGIN,
   path: '/var/www/react',
   user: 'ubuntu'
 };
