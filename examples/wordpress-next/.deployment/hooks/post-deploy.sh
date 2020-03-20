@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
+##
+# Runs on the server after successfully pulling the latest code.
+# Use this script to start the project and save any configuration changes.
+##
+
 main() {
 	local environment="$1"
 
