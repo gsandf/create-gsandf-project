@@ -22,7 +22,7 @@ from improvements over time.
 With [Yarn] installed, run:
 
 ```bash
-yarn create @gsandf/site --example wordpress-next new-site-name
+yarn create gsandf-project --example wordpress-next new-site-name
 ```
 
 ## Useful Commands
