@@ -50,8 +50,22 @@ setupNodejs() {
 	fi
 }
 
+setupWpCli() {
+	if isInstalled wp; then
+		echo 'wp-cli already installed'
+		return
+	fi
+
+	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+	chmod +x wp-cli.phar
+	sudo mv wp-cli.phar /usr/local/bin/wp
+
+	printf 'Installed %s' "$(wp cli version)"
+}
+
 main() {
 	setupNodejs
+	setupWpCli
 }
 
 main "$@"
