@@ -1,0 +1,17 @@
+[
+  {
+    "name": "acf-to-rest-api",
+    "status": "active",
+    "version": "3.1.0"
+  },
+  {
+    "name": "advanced-custom-fields",
+    "status": "active",
+    "version": "5.8.7"
+  },
+  {
+    "name": "custom-post-type-ui",
+    "status": "active",
+    "version": "1.7.1"
+  }
+]

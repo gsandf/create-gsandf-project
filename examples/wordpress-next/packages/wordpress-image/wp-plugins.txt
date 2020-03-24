@@ -1,7 +1,0 @@
-##
-# Plugins listed here will be installed and activated on the WordPress instance.
-# @see https://developer.wordpress.org/cli/commands/plugin/install/
-##
-acf-to-rest-api@3.1.0
-advanced-custom-fields@5.8.7
-custom-post-type-ui@1.7.1

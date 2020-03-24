@@ -1,4 +1,4 @@
-version: "3.3"
+version: '3.3'
 
 services:
   db:
@@ -11,7 +11,9 @@ services:
     restart: unless-stopped
 
   wordpress:
-    build: ./packages/wordpress-image
+    build:
+      context: .
+      dockerfile: packages/wordpress-image/Dockerfile
     depends_on:
       - db
     env_file: .env

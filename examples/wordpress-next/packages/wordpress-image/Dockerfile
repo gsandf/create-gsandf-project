@@ -54,8 +54,8 @@ RUN wp core download --version=${WORDPRESS_VERSION} && \
 EXPOSE 8080
 
 # Add setup script
-COPY --chown=wp setup.sh /wp/setup.sh
-COPY --chown=wp wp-plugins.txt /wp/wp-plugins.txt
+COPY --chown=wp packages/wordpress-image/setup.sh /wp/setup.sh
+COPY --chown=wp plugins.json /wp/plugins.json
 RUN chmod +x setup.sh
 
 CMD ["./setup.sh"]

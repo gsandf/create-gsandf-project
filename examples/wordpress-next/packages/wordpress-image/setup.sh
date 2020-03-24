@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
-pluginsFile='/wp/wp-plugins.txt'
+pluginsFile='/wp/plugins.json'
 
 printHeading() {
 	bold='\e[1m'
@@ -27,20 +27,11 @@ installWordPress() {
 		--admin_password="${WORDPRESS_ADMIN_PASSWORD:-admin}" \
 		--admin_email="${WORDPRESS_ADMIN_MAIL:-admin@example.com}"
 
-	wp option update permalink_structure '/%postname%/'
+	wp option update permalink_structure '/posts/%postname%/'
 }
 
 installPlugins() {
-	while read -r line; do
-		# Ignore lines starting with a comment
-		[[ $line =~ ^# ]] && continue
-		# Ignore empty lines
-		[[ $line == '' ]] && continue
-
-		IFS='@' read -r pluginName pluginVersion <<<"${line}"
-		echo "wp plugin install --activate --version=${pluginVersion} ${pluginName}"
-		wp plugin install --activate --version="${pluginVersion}" "${pluginName}"
-	done <"$pluginsFile"
+	wp plugin-list restore $pluginsFile
 }
 
 main() {
@@ -64,10 +55,6 @@ main() {
 		installWordPress
 	fi
 
-	# Install WordPress plugins
-	printHeading 'Installing plugins'
-	installPlugins
-
 	# Activate the custom theme
 	if wp theme is-active custom-theme; then
 		printHeading '✔︎ Using custom theme'
@@ -75,6 +62,10 @@ main() {
 		printHeading 'Activating custom theme'
 		wp theme activate custom-theme
 	fi
+
+	# Install WordPress plugins
+	printHeading 'Installing plugins'
+	installPlugins
 
 	# Start a basic PHP server
 	printHeading 'Starting server at http://localhost:8080'

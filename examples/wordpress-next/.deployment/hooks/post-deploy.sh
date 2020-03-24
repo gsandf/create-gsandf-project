@@ -6,16 +6,42 @@ set -eu -o pipefail
 # Use this script to start the project and save any configuration changes.
 ##
 
+wordPressRoot='/var/www/html'
+
+# NOTE: if environments need different plugins for some reason, multiple plugin
+# files can be used
+pluginsFile="/var/www/react/current/plugins.json"
+
+printHeading() {
+	bold='\e[1m'
+	underline='\e[4m'
+	reset='\e[0m'
+	printf '%b%s%b\n' "${bold}${underline}" "$@" "$reset"
+}
+
+updateWordPressPlugins() {
+	pushd "$wordPressRoot"
+	wp plugin-list restore $pluginsFile
+	popd
+}
+
 main() {
 	local environment="$1"
 
+	# Install dependencies, build the project, and restart the front-end server
+	printHeading 'Updating Next.js project…'
 	# production=false ensures we install tools necessary for building the application
 	yarn install --production=false --prefer-offline
 	yarn build
 	pm2 startOrReload ecosystem.config.js --env "$environment"
 	pm2 save
 
+	# Forces plugins to match those found in the $pluginsFile
+	printHeading 'Updating WordPress Plugins…'
+	updateWordPressPlugins
+
 	# Reload using the latest Nginx config
+	printHeading 'Reloading Nginx…'
 	sudo nginx -t && sudo service nginx reload
 }
 
