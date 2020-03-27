@@ -1,0 +1,11 @@
+@develop:
+  ssh: dev.example.com
+  path: /var/www/html
+
+@staging:
+  ssh: stage.example.com
+  path: /var/www/html
+
+@production:
+  ssh: example.com
+  path: /var/www/html

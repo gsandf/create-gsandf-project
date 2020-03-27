@@ -2,16 +2,25 @@
   {
     "name": "acf-to-rest-api",
     "status": "active",
+    "update": "available",
     "version": "3.1.0"
   },
   {
     "name": "advanced-custom-fields",
     "status": "active",
+    "update": "available",
     "version": "5.8.7"
   },
   {
     "name": "custom-post-type-ui",
     "status": "active",
+    "update": "available",
     "version": "1.7.1"
+  },
+  {
+    "name": "wp-migrate-db",
+    "status": "inactive",
+    "update": "none",
+    "version": "1.0.13"
   }
 ]
