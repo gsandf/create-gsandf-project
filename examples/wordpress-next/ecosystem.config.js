@@ -8,7 +8,8 @@ module.exports = {
   apps: [
     {
       name: 'react-renderer',
-      script: 'yarn start:prod'
+      script: 'yarn start:prod',
+      log_date_format: 'YYYY-MM-DDTHH:mm:ss.SSS'
     }
   ],
 
