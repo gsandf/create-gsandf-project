@@ -1,15 +1,14 @@
 import { NextPageContext } from 'next';
 import Link from 'next/link';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { get } from 'unchanged';
 import { apiFetch, GraphQLResponse } from '../../api';
-import { Container } from '../../components/Base';
+import { Container } from '../../components/common';
 import Spinner from '../../components/Spinner';
 import BasicTemplate from '../../templates/Basic';
 
-const FeaturedImage = styled.div<{ background: string }>`
-  background-image: url("${p => p.background}");
+const FeaturedImage = styled.div<{ background?: string }>`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -43,7 +42,7 @@ function Posts({ data, errors }: GraphQLResponse) {
 
   return (
     <BasicTemplate>
-      {featuredImage && <FeaturedImage background={featuredImage} />}
+      <FeaturedImage background={featuredImage} />
 
       <Container>
         <h1>{title}</h1>

@@ -2,8 +2,8 @@ import Link from 'next/link';
 import React from 'react';
 import { get } from 'unchanged';
 import { apiFetch, GraphQLResponse } from '../../api';
-import { Container } from '../../components/Base';
-import { Box, PostList } from '../../components/Posts/components';
+import { Container, Box } from '../../components/common';
+import { PostBox, PostList } from '../../components/Posts/components';
 import Spinner from '../../components/Spinner';
 import BasicTemplate from '../../templates/Basic';
 
@@ -29,6 +29,10 @@ function Posts({ data }: PostProps) {
   if (pending) {
     return (
       <BasicTemplate>
+        <Box as="header" bg="accent" color="onAccent" mb={3} p={6}>
+          <h1>Posts</h1>
+        </Box>
+
         <Spinner />
       </BasicTemplate>
     );
@@ -36,16 +40,23 @@ function Posts({ data }: PostProps) {
 
   return (
     <BasicTemplate>
-      <Container>
+      <Box as="header" bg="accent" color="onAccent" mb={3} p={6}>
         <h1>Posts</h1>
+      </Box>
 
+      <Container>
         <PostList>
           {data.allPost.map(({ featuredMedia, path, title }) => (
-            <Box background={get('sizes.medium.url', featuredMedia)} key={path}>
+            <PostBox
+              background={get('sizes.medium.url', featuredMedia)}
+              bg="dark"
+              color="onDark"
+              key={path}
+            >
               <Link href={path}>
                 <a>{title}</a>
               </Link>
-            </Box>
+            </PostBox>
           ))}
         </PostList>
       </Container>

@@ -1,13 +1,13 @@
 import React from 'react';
+import { Box } from '../components/common';
 import BasicLayout from '../templates/Basic';
-import { Container } from '../components/Base';
 
 function About() {
   return (
     <BasicLayout>
-      <Container>
+      <Box as="header" bg="dark" color="onDark" p={6}>
         <h1>About</h1>
-      </Container>
+      </Box>
     </BasicLayout>
   );
 }
