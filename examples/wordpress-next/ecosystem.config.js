@@ -32,7 +32,7 @@ module.exports = {
       'post-setup': '.deployment/hooks/post-setup.sh develop',
       'pre-deploy-local': '.deployment/hooks/pre-deploy-local.sh develop',
       'pre-setup': '.deployment/hooks/pre-setup.sh develop',
-      ref: 'origin/update-server-setup',
+      ref: 'origin/develop',
       env: {
         ...commonEnv,
         MYSQL_DATABASE: 'replace_me',
