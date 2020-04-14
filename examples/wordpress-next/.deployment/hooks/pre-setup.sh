@@ -98,6 +98,9 @@ main() {
 
 	heading 'Ensuring directory exists'
 	setupDirectories
+
+	heading 'Adding public key for Bitbucket.org'
+	grep 'bitbucket.org' --quiet ~/.ssh/known_hosts || ssh-keyscan bitbucket.org >>~/.ssh/known_hosts
 }
 
 main "$@"
