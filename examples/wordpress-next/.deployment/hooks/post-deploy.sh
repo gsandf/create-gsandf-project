@@ -6,7 +6,10 @@ set -eu -o pipefail
 # Use this script to start the project and save any configuration changes.
 ##
 
-wordPressRoot='/var/www/html'
+# The directory of the currently running file
+declare -r __dirname="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+source "${__dirname}/../../.env"
 
 # NOTE: if environments need different plugins for some reason, multiple plugin
 # files can be used
@@ -20,7 +23,7 @@ printHeading() {
 }
 
 updateWordPressPlugins() {
-	pushd "$wordPressRoot"
+	pushd "$WORDPRESS_PATH"
 	wp plugin-list restore $pluginsFile
 	popd
 }

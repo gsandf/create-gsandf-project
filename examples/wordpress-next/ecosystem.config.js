@@ -4,6 +4,17 @@ const commonSetup = {
   user: 'ubuntu'
 };
 
+const commonEnv = {
+  NODE_ENV: 'production',
+  WORDPRESS_ADMIN_PASSWORD: 'replace_me',
+  WORDPRESS_ADMIN_USER: 'replace_me',
+  WORDPRESS_PATH: '/var/www/wordpress',
+  WORDPRESS_PLUGIN_FILE: `${commonSetup.path}/current/plugins.json`,
+  WORDPRESS_THEME: 'gsandf-react',
+  WORDPRESS_TITLE: JSON.stringify('replace_me'),
+  WORDPRESS_VERSION: 'latest'
+};
+
 module.exports = {
   apps: [
     {
@@ -21,9 +32,14 @@ module.exports = {
       'post-setup': '.deployment/hooks/post-setup.sh develop',
       'pre-deploy-local': '.deployment/hooks/pre-deploy-local.sh develop',
       'pre-setup': '.deployment/hooks/pre-setup.sh develop',
-      ref: 'origin/develop',
+      ref: 'origin/update-server-setup',
       env: {
-        NODE_ENV: 'production'
+        ...commonEnv,
+        MYSQL_DATABASE: 'replace_me',
+        MYSQL_HOST: 'replace_me',
+        MYSQL_PASSWORD: 'replace_me',
+        MYSQL_USER: 'replace_me',
+        WORDPRESS_URL: 'https://dev.replace_me.com'
       }
     },
 
@@ -36,7 +52,12 @@ module.exports = {
       'pre-setup': '.deployment/hooks/pre-setup.sh staging',
       ref: 'origin/staging',
       env: {
-        NODE_ENV: 'production'
+        ...commonEnv,
+        MYSQL_DATABASE: 'replace_me',
+        MYSQL_HOST: 'replace_me',
+        MYSQL_PASSWORD: 'replace_me',
+        MYSQL_USER: 'replace_me',
+        WORDPRESS_URL: 'https://stage.replace_me.com'
       }
     },
 
@@ -49,7 +70,12 @@ module.exports = {
       'pre-setup': '.deployment/hooks/pre-setup.sh production',
       ref: 'origin/master',
       env: {
-        NODE_ENV: 'production'
+        ...commonEnv,
+        MYSQL_DATABASE: 'replace_me',
+        MYSQL_HOST: 'replace_me',
+        MYSQL_PASSWORD: 'replace_me',
+        MYSQL_USER: 'replace_me',
+        WORDPRESS_URL: 'https://replace_me.com'
       }
     }
   }
