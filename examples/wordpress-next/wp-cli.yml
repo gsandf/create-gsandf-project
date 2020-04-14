@@ -1,11 +1,11 @@
 @develop:
   ssh: dev.example.com
-  path: /var/www/html
+  path: /var/www/wordpress
 
 @staging:
   ssh: stage.example.com
-  path: /var/www/html
+  path: /var/www/wordpress
 
 @production:
   ssh: example.com
-  path: /var/www/html
+  path: /var/www/wordpress
