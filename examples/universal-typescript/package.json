@@ -1,0 +1,44 @@
+{
+  "name": "example-universal-typescript",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "author": "GS&F Devs <dev@gsandf.com> (https://gsandf.com/)",
+  "license": "MIT",
+  "files": [
+    "dist/**"
+  ],
+  "types": "dist/index.d.ts",
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "files": [
+      "src/**/*.test.ts"
+    ],
+    "ignoredByWatcher": [
+      "!src/**"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "amper-scripts": "^1.0.0-0",
+    "ava": "^3.5.0",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "format-check": "amper-scripts format-check",
+    "format": "amper-scripts format-write",
+    "lint": "amper-scripts lint --config ./.eslintrc.js src",
+    "prepublish": "yarn build",
+    "test": "ava"
+  }
+}
