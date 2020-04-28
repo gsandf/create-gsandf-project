@@ -17,15 +17,13 @@ const Header = styled.h1`
 function Home() {
   return (
     <BasicLayout>
-      <Box as="header" bg="darken" p={5}>
-        <Flex justifyContent="center">
-          <Box width="3/4">
-            <Header>Welcome to a hackable WordPress theme</Header>
-          </Box>
-        </Flex>
-      </Box>
+      <Flex as="header" $justifyContent="center" $bg="darken" $py={7}>
+        <Box $px={[4, 5]} $width="3/4">
+          <Header>Welcome to a hackable WordPress theme</Header>
+        </Box>
+      </Flex>
 
-      <Box p={4}>
+      <Box $p={4}>
         <p>
           Next.js will serve each file in <code>`/pages`</code> under a pathname
           matching the filename. For example, <code>`/pages/about.js`</code> is

@@ -1,6 +1,7 @@
 import { normalize } from 'polished';
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 import * as mixins from './mixins';
+import { breakpoints, media } from './breakpoints';
 
 const palette = {
   backgroundOrange: '#F26825',
@@ -177,7 +178,8 @@ export const styles = createGlobalStyle`
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: ${textStyles.heading};
+    font-family: ${fonts.heading};
+    line-height: ${lineHeights.heading};
     margin: 0;
   }
 
@@ -202,17 +204,40 @@ export const styles = createGlobalStyle`
   }
 `;
 
-export const components = {};
+export const components: any = {
+  Button: css`
+    background-color: ${colors.accent};
+    border-width: 0;
+    color: ${colors.textDark};
+    cursor: default;
+    font-family: ${fonts.body};
+    font-weight: ${fontWeights.button};
+    letter-spacing: 1.45px;
+    padding: ${space[2]} ${space[3]};
+    text-transform: uppercase;
+    transition: box-shadow 300ms ease;
 
-export { mixins };
+    :hover {
+      box-shadow: ${shadows.lg};
+    }
+
+    ${media.up.sm(css`
+      padding: ${space[3]} ${space[4]};
+    `)}
+  `
+};
+
+export { breakpoints, media, mixins };
 
 export default {
+  breakpoints,
   colors,
   components,
   fonts,
   fontSizes,
   fontWeights,
   lineHeights,
+  media,
   mixins,
   radii,
   shadows,

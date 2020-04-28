@@ -29,7 +29,7 @@ function Posts({ data }: PostProps) {
   if (pending) {
     return (
       <BasicTemplate>
-        <Box as="header" bg="accent" color="onAccent" mb={3} p={6}>
+        <Box as="header" $bg="accent" $color="onAccent" $mb={3} $p={6}>
           <h1>Posts</h1>
         </Box>
 
@@ -40,7 +40,7 @@ function Posts({ data }: PostProps) {
 
   return (
     <BasicTemplate>
-      <Box as="header" bg="accent" color="onAccent" mb={3} p={6}>
+      <Box as="header" $bg="accent" $color="onAccent" $mb={3} $p={6}>
         <h1>Posts</h1>
       </Box>
 
@@ -49,12 +49,12 @@ function Posts({ data }: PostProps) {
           {data.allPost.map(({ featuredMedia, path, title }) => (
             <PostBox
               background={get('sizes.medium.url', featuredMedia)}
-              bg="dark"
-              color="onDark"
+              $bg="dark"
+              $color="onDark"
               key={path}
             >
               <Link href={path}>
-                <a>{title}</a>
+                <a dangerouslySetInnerHTML={{ __html: title }} />
               </Link>
             </PostBox>
           ))}

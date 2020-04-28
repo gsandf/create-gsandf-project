@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import { transparentize } from 'polished';
 
 // TODO: replace with navigation routes from site
 const routes = [
@@ -10,14 +10,13 @@ const routes = [
   { displayName: 'Posts', path: '/posts' }
 ];
 
-const navHeight = '54px';
-
 const NavContainer = styled.nav`
   align-items: center;
-  background-color: ${p => p.theme.colors.white};
-  border-bottom: 1px solid ${p => p.theme.colors.darken};
+  background-color: ${p => transparentize(0.4, p.theme.colors.dark)};
+  backdrop-filter: blur(${p => p.theme.space[3]});
+  box-sizing: border-box;
   display: flex;
-  height: ${navHeight};
+  height: ${p => p.theme.sizes.sm};
   justify-content: center;
   position: fixed;
   width: 100%;
@@ -29,7 +28,7 @@ const NavList = styled.ul`
   flex-direction: row;
   flex: 1;
   justify-content: space-between;
-  margin: 0 ${p => p.theme.space[4]};
+  margin: 0 16px;
   max-width: 800px;
   padding: 0;
 
@@ -45,42 +44,35 @@ const NavItem = styled.li`
 `;
 
 const Spacer = styled.div`
-  height: ${navHeight};
+  height: ${p => p.theme.sizes.sm};
   width: 100%;
 `;
 
 const StyledNavLink = styled.a`
-  color: ${p => p.theme.colors.textDark};
+  color: ${p => p.theme.colors.textLight};
   cursor: pointer;
   text-decoration: none;
+  transition: color 200ms ease-out;
 
   &:hover {
-    color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.primary};
   }
-
-  ${p =>
-    p.isActive &&
-    css`
-      color: ${p => p.theme.colors.accent};
-    `}
 `;
 
 function NavItems() {
-  const router = useRouter();
-
-  const isActiveRoute = path => path === router.pathname;
-
-  return routes
-    .filter(route => route.displayName)
-    .map(route => (
-      <NavItem key={route.path}>
-        <Link href={route.path} passHref>
-          <StyledNavLink isActive={isActiveRoute(route.path)}>
-            {route.displayName}
-          </StyledNavLink>
-        </Link>
-      </NavItem>
-    ));
+  return (
+    <>
+      {routes
+        .filter(route => route.displayName)
+        .map(route => (
+          <NavItem key={route.path}>
+            <Link href={route.path}>
+              <StyledNavLink>{route.displayName}</StyledNavLink>
+            </Link>
+          </NavItem>
+        ))}
+    </>
+  );
 }
 
 function Nav() {
