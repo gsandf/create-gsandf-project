@@ -5,14 +5,10 @@ module.exports = {
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended'
   ],
-  overrides: [
-    {
-      files: ['*.js'],
-      rules: {
-        '@typescript-eslint/explicit-function-return-type': ['off']
-      }
-    }
-  ],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint']
+  plugins: ['@typescript-eslint'],
+  rules: {
+    '@typescript-eslint/explicit-function-return-type': ['off'],
+    '@typescript-eslint/no-explicit-any': ['off']
+  }
 };
