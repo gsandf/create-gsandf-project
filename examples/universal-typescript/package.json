@@ -5,6 +5,20 @@
   "module": "dist/index.esm.js",
   "browser": "dist/index.umd.js",
   "author": "GS&F Devs <dev@gsandf.com> (https://gsandf.com/)",
+  "description": "An example TypeScript library starter",
+  "bugs": {
+    "url": "https://github.com/gsandf/create-gsandf-project/issues"
+  },
+  "homepage": "https://github.com/gsandf/create-gsandf-project",
+  "keywords": [
+    "hash",
+    "lookup",
+    "map"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gsandf/create-gsandf-project.git"
+  },
   "license": "MIT",
   "files": [
     "dist/**"
@@ -27,10 +41,16 @@
       "ts-node/register"
     ]
   },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.10.1",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-typescript": "^7.9.0",
     "@rollup/plugin-babel": "^5.0.2",
@@ -45,9 +65,11 @@
     "prettier": "^1.19.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.10.9",
+    "rollup-plugin-terser": "^6.1.0",
     "ts-node": "^8.6.2",
     "typescript": "^3.9.3"
   },
+  "peerDependencies": {},
   "scripts": {
     "build": "run-s build:clean build:types build:js",
     "build:clean": "rimraf ./dist",
