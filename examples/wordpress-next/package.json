@@ -29,10 +29,10 @@
     "format": "run-p 'theme:prettier --write' 'site format --write'",
     "site": "yarn workspace @example/site",
     "start": "yarn start:dev",
-    "start:dev": "WORDPRESS_API='https://dev.webapi.salata.com/wp-json' yarn dev",
+    "start:dev": "WORDPRESS_API='https://dev.webapi.gsandf.com/wp-json' yarn dev",
     "start:local": "run-p 'up' 'dev'",
-    "start:stage": "WORDPRESS_API='https://stage.webapi.salata.com/wp-json' yarn dev",
-    "start:prod": "WORDPRESS_API='https://webapi.salata.com/wp-json' yarn dev",
+    "start:stage": "WORDPRESS_API='https://stage.webapi.gsandf.com/wp-json' yarn dev",
+    "start:prod": "WORDPRESS_API='https://webapi.gsandf.com/wp-json' yarn dev",
     "theme:prettier": "prettier packages/wordpress-theme ./**/*.{php,js}",
     "up": "docker-compose up --detach",
     "validate": "run-p 'theme:prettier --check' 'site validate'"

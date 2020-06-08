@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const graphqlEndpoint =
-  process.env.GRAPHQL_ENDPOINT || 'http://localhost:3000/graphql';
+  process.env.GRAPHQL_ENDPOINT || 'http://localhost:3000/api/graphql';
 
 export const apiRequest = axios.create({
   baseURL: graphqlEndpoint,
