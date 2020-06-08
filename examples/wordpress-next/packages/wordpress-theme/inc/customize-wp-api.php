@@ -16,10 +16,10 @@ add_action('rest_api_init', function () {
       'get_callback' => function () {
         return substr(get_permalink(), strlen(home_url()));
       },
-      'schema' => array(
+      'schema' => [
         'description' => __('Relative path'),
-        'type' => 'string'
-      )
+        'type' => 'string',
+      ],
     ]);
   }
 
@@ -30,9 +30,9 @@ add_action('rest_api_init', function () {
     'get_callback' => function ($post) {
       return get_the_author_email();
     },
-    'schema' => array(
+    'schema' => [
       'description' => __('Author email.'),
-      'type' => 'string'
-    )
+      'type' => 'string',
+    ],
   ]);
 });

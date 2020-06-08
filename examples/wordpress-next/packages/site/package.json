@@ -5,23 +5,23 @@
   "author": "GS&F Devs <mindreactor@gsandf.com> (https://gsandf.com/)",
   "license": "MIT",
   "dependencies": {
-    "@gsandf/wordpress-graphql-schema": "^0.1.0",
-    "@types/node": "^13.13.4",
-    "@types/react": "^16.9.34",
+    "@gsandf/wordpress-graphql-schema": "^0.2.0",
+    "@types/node": "^14.0.11",
+    "@types/react": "^16.9.35",
     "@types/styled-components": "^5.1.0",
     "axios": "^0.19.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "graphql-yoga": "^1.18.3",
     "http-status-codes": "^1.4.0",
-    "next": "^9.3.6",
-    "nodemon": "^2.0.3",
+    "next": "^9.4.4",
+    "nodemon": "^2.0.4",
     "pm2": "^4.4.0",
-    "polished": "^3.5.2",
+    "polished": "^3.6.4",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "styled-components": "^5.1.0",
+    "styled-components": "^5.1.1",
     "unchanged": "^2.2.1"
   },
   "scripts": {
@@ -40,6 +40,6 @@
     "amper-scripts": "^1.0.0-0",
     "babel-plugin-styled-components": "^1.10.6",
     "nodemon": "^2.0.2",
-    "typescript": "^3.8.2"
+    "typescript": "^3.9.5"
   }
 }

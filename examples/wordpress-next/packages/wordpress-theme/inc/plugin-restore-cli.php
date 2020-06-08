@@ -165,7 +165,7 @@ class PluginListCommand
       'exit_error' => true, // Halt script execution on error
       'launch' => false, // Reuse the current process
       'parse' => 'json', // Parse captured STDOUT to JSON array
-      'return' => true // Return 'STDOUT'; use 'all' for full object
+      'return' => true, // Return 'STDOUT'; use 'all' for full object
     ];
 
     return WP_CLI::runcommand('plugin list --format=json', $wp_cli_options);
