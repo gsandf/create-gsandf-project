@@ -1,3 +1,0 @@
-{
-  "watch": ["../wordpress-graphql-schema/**", "server.js"]
-}

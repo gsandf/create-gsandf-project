@@ -70,6 +70,19 @@ See below for other scripts.
 
 We typically use [wp-migrate-db] for moving content between environments.
 
+### Extending the GraphQL Schema
+
+This uses [`create-root-schema`]. This means the schema can be written in many
+files and combined. New schema parts should be written in
+`packages/site/schema/`. Normally each file will export `typeDefs` and
+`resolvers`, but more can be done (see the README for [`create-root-schema`] for
+more details).
+
+After creating a new schema part, it should be included in `packages/site/schema/index.js`.
+
+For an example on how to extend the schema, see `packages/site/schema/status.ts`
+and `packages/site/schema/index.js`.
+
 ### Managing Plugins
 
 This setup uses [WP-CLI] and Bitbucket Pipelines to manage the plugins across
@@ -102,6 +115,7 @@ For more of a deep dive, see the docs for the projects this one depends on:
 
 UNLICENSED
 
+[`create-root-schema`]: https://github.com/gsandf/create-root-schema
 [docker]: https://www.docker.com/
 [eslint]: https://eslint.org/
 [graphql yoga]: https://github.com/prisma-labs/graphql-yoga
