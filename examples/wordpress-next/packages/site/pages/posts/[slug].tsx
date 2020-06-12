@@ -1,19 +1,24 @@
 import { NextPageContext } from 'next';
-import Link from 'next/link';
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { get } from 'unchanged';
 import { apiFetch, GraphQLResponse } from '../../api';
-import { Container } from '../../components/common';
+import { Box, Container, Text } from '../../components/common';
 import Spinner from '../../components/Spinner';
 import BasicTemplate from '../../templates/Basic';
 
-const FeaturedImage = styled.div<{ background?: string }>`
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 40vh;
-  width: 100%;
+const Article = styled.article`
+  img {
+    height: auto;
+    max-width: 100%;
+  }
+
+  img,
+  iframe {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 
 function Posts({ data, errors }: GraphQLResponse) {
@@ -37,21 +42,30 @@ function Posts({ data, errors }: GraphQLResponse) {
     );
   }
 
-  const { content, featuredMedia, title } = data.post;
+  const { content, dateCreated, featuredMedia, title } = data.post;
   const featuredImage = get('sizes.full.url', featuredMedia);
 
   return (
     <BasicTemplate>
-      <FeaturedImage background={featuredImage} />
+      <Container
+        $direction="column"
+        $maxWidth="800px"
+        $p={[2, 0]}
+        style={{ textAlign: 'center' }}
+      >
+        <Text as="h1" dangerouslySetInnerHTML={{ __html: title }} />
 
-      <Container>
-        <h1>{title}</h1>
+        <Text as="div" $color="sandstone" $fontSize="2" $pt={2}>
+          {dateCreated}
+        </Text>
 
-        <Link href="/posts">
-          <a>&larr; Back</a>
-        </Link>
+        <Box $py={[3, 4]}>
+          <img alt={featuredImage} src={featuredImage} width="100%" />
+        </Box>
+      </Container>
 
-        <article dangerouslySetInnerHTML={{ __html: content }} />
+      <Container $direction="column" $maxWidth="600px" $p={[2, 0]}>
+        <Article dangerouslySetInnerHTML={{ __html: content }} />
       </Container>
     </BasicTemplate>
   );
@@ -63,6 +77,7 @@ Posts.getInitialProps = ({ query }: NextPageContext) => {
       query getPost($preview: Boolean, $slug: String!) {
         post(preview: $preview, slug: $slug) {
           content
+          dateCreated(format: "LLLL dd, yyyy")
           featuredMedia {
             sizes {
               full {

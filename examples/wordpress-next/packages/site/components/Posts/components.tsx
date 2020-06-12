@@ -4,10 +4,14 @@ import { Box } from '../common';
 export const PostList = styled.ul`
   display: grid;
   gap: ${p => p.theme.space[2]};
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: ${p => p.theme.space[2]};
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   @media (min-width: 1024px) {
     grid-template-columns: repeat(3, 1fr);

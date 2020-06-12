@@ -10,11 +10,11 @@ import BasicTemplate from '../../templates/Basic';
 interface PostProps extends GraphQLResponse {
   data: {
     allPost: {
-      path: string;
+      slug: string;
       title: string;
       featuredMedia: {
         sizes: {
-          medium: {
+          medium_large: {
             url: string;
           };
         };
@@ -40,20 +40,20 @@ function Posts({ data }: PostProps) {
 
   return (
     <BasicTemplate>
-      <Box as="header" $bg="accent" $color="onAccent" $mb={3} $p={6}>
+      <Box as="header" $bg="accent" $color="onAccent" $p={6}>
         <h1>Posts</h1>
       </Box>
 
       <Container>
         <PostList>
-          {data.allPost.map(({ featuredMedia, path, title }) => (
+          {data.allPost.map(({ featuredMedia, slug, title }) => (
             <PostBox
-              background={get('sizes.medium.url', featuredMedia)}
+              background={get('sizes.medium_large.url', featuredMedia)}
               $bg="dark"
               $color="onDark"
-              key={path}
+              key={slug}
             >
-              <Link href={path}>
+              <Link href={`/posts/${slug}`}>
                 <a dangerouslySetInnerHTML={{ __html: title }} />
               </Link>
             </PostBox>
@@ -69,11 +69,11 @@ Posts.getInitialProps = () => {
     query: /* GraphQL */ `
       query getPosts {
         allPost {
-          path
+          slug
           title
           featuredMedia {
             sizes {
-              medium {
+              medium_large {
                 url
               }
             }

@@ -17,8 +17,8 @@ const Header = styled.h1`
 function Home() {
   return (
     <BasicLayout>
-      <Flex as="header" $justifyContent="center" $bg="darken" $py={7}>
-        <Box $px={[4, 5]} $width="3/4">
+      <Flex as="header" $justifyContent="center" $bg="darken" $py={6}>
+        <Box $px={[4, 5]} $maxWidth={['full', '600px']}>
           <Header>Welcome to a hackable WordPress theme</Header>
         </Box>
       </Flex>
