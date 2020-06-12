@@ -5,7 +5,7 @@
   "author": "GS&F Devs <mindreactor@gsandf.com> (https://gsandf.com/)",
   "license": "MIT",
   "dependencies": {
-    "@gsandf/wordpress-graphql-schema": "^0.2.0",
+    "@gsandf/wordpress-graphql-schema": "^0.3.0",
     "@types/node": "^14.0.11",
     "@types/react": "^16.9.35",
     "@types/styled-components": "^5.1.0",

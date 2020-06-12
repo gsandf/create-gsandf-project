@@ -1281,6 +1281,13 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@blakek/deep@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@blakek/deep/-/deep-1.0.3.tgz#974414555995056f500f3699c51ec1510c2b9613"
+  integrity sha512-QcakU7DE5RIRBVCCiPmNh2gvtFYXEuGRSgU04I7hYcCZMLG9yLdHwOoQhlLPxmvDnGjqhz/ObU3w88JDCVEldg==
+  dependencies:
+    pathington "^1.1.7"
+
 "@emotion/is-prop-valid@^0.8.8":
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz#db28b1c4368a259b60a97311d6a952d4fd01ac1a"
@@ -1303,11 +1310,12 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.5.tgz#77211291c1900a700b8a78cfafda3160d76949ed"
   integrity sha512-OWORNpfjMsSSUBVrRBVGECkhWcULOAJz9ZW8uK9qgxD+87M7jHRcvh/A96XXNhXTLmKcoYSQtBEX7lHMO7YRwg==
 
-"@gsandf/wordpress-graphql-schema@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@gsandf/wordpress-graphql-schema/-/wordpress-graphql-schema-0.2.0.tgz#06bf4793da11cb03dfa78838cec0ce5c76e36b24"
-  integrity sha512-7LfUIcVPUl1x3edI+E2YDXGhafZTgu+R6Ilxn3dMIvLntGELfBXe84VBt49+YeLdS1lyBmQrK3BLGZ1kYs6qng==
+"@gsandf/wordpress-graphql-schema@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@gsandf/wordpress-graphql-schema/-/wordpress-graphql-schema-0.3.0.tgz#4705a642e2ac1ec96cc7366a20e7edf88ef3480d"
+  integrity sha512-FPSS5o2JBIr97XbXqWXf+zl4UnGzAz3bZmJz5bLID0+6/CI8qztKwPXJiVYtYVu06b0ww48KN/+jb6Hg+uyfkw==
   dependencies:
+    "@blakek/deep" "^1.0.3"
     axios "^0.19.0"
     create-root-schema "^2.0.0"
     date-fns "^2.8.0"
@@ -1315,7 +1323,6 @@
     graphql-tools "^4.0.7"
     path-to-regexp "^6.1.0"
     sift "^8.5.1"
-    unchanged "^2.2.1"
 
 "@next/react-dev-overlay@9.4.4":
   version "9.4.4"
