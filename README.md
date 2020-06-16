@@ -8,7 +8,7 @@ Choose one of the starter projects, and see its documentation. Typically, it'll
 use something like this to get set up:
 
 ```bash
-yarn create gsandf-project --example <example-name> <project-name>
+npx create-gsandf-project --example <example-name> <project-name>
 ```
 
 ## Available Starters
