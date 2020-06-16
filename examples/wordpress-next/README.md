@@ -25,7 +25,7 @@ This is an example repository that is ready to be set up. With [Yarn] installed,
 run:
 
 ```bash
-yarn create gsandf-project --example wordpress-next new-site-name
+npx create-gsandf-project --example wordpress-next new-site-name
 ```
 
 This creates a new project in the current directory called `new-site-name`.
