@@ -12,7 +12,7 @@ This is an example repository that is ready to be set up. With [Yarn] installed,
 run:
 
 ```bash
-yarn create gsandf-project --example universal-typescript new-project-name
+npx create-gsandf-project --example universal-typescript new-project-name
 ```
 
 This creates a new project in the current directory called `new-project-name`.
