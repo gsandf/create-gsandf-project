@@ -27,6 +27,7 @@
     "exec:production": "yarn deploy production exec",
     "exec:staging": "yarn deploy staging exec",
     "format": "run-p 'theme:prettier --write' 'site format --write'",
+    "serve": "next start packages/site/",
     "site": "yarn workspace @example/site",
     "start": "yarn start:dev",
     "start:dev": "WORDPRESS_API='https://dev.webapi.gsandf.com/wp-json' yarn dev",
