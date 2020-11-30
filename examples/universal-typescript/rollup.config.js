@@ -44,7 +44,7 @@ const buildSystemConfig = {
     ...commonPlugins,
 
     // Compile TypeScript/JavaScript files
-    babel({ babelHelpers: 'bundled', extensions, include: ['src/**/*'] })
+    babel({ babelHelpers: 'bundled', include: ['src/**/*'] })
   ]
 };
 
@@ -70,7 +70,6 @@ const browserConfig = {
     // Compile TypeScript/JavaScript files
     babel({
       babelHelpers: 'runtime',
-      extensions,
       plugins: ['@babel/plugin-transform-runtime'],
       presets: [
         [
