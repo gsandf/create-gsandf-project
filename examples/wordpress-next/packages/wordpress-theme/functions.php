@@ -21,6 +21,9 @@ require_once 'inc/preview-post-link.php';
 // Enable Basic Auth for the WordPress API
 require_once 'inc/enable-basic-auth.php';
 
+// Add handler for clearing theme cache
+require_once 'inc/nextjs-cache.php';
+
 if (defined('WP_CLI') && WP_CLI) {
   require_once 'inc/plugin-restore-cli.php';
 }

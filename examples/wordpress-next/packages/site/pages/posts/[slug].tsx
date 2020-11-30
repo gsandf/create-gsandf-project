@@ -1,10 +1,9 @@
-import { NextPageContext } from 'next';
+import * as datefns from 'date-fns';
+import { GetServerSidePropsContext } from 'next';
 import React from 'react';
 import styled from 'styled-components';
-import { get } from 'unchanged';
-import { apiFetch, GraphQLResponse } from '../../api';
+import { apiFetch } from '../../api';
 import { Box, Container, Text } from '../../components/common';
-import Spinner from '../../components/Spinner';
 import BasicTemplate from '../../templates/Basic';
 
 const Article = styled.article`
@@ -21,30 +20,10 @@ const Article = styled.article`
   }
 `;
 
-function Posts({ data, errors }: GraphQLResponse) {
-  if (errors) {
-    return (
-      <BasicTemplate>
-        <Container>
-          <pre>{JSON.stringify(errors, null, 2)}</pre>
-        </Container>
-      </BasicTemplate>
-    );
-  }
+const formatDate = (dateString: string) =>
+  datefns.format(new Date(dateString), 'MMMM d, yyyy');
 
-  const pending = !data || !data.post;
-
-  if (pending) {
-    return (
-      <BasicTemplate>
-        <Spinner />
-      </BasicTemplate>
-    );
-  }
-
-  const { content, dateCreated, featuredMedia, title } = data.post;
-  const featuredImage = get('sizes.full.url', featuredMedia);
-
+function Posts(props: PostProps) {
   return (
     <BasicTemplate>
       <Container
@@ -53,44 +32,72 @@ function Posts({ data, errors }: GraphQLResponse) {
         $p={[2, 0]}
         style={{ textAlign: 'center' }}
       >
-        <Text as="h1" dangerouslySetInnerHTML={{ __html: title }} />
+        <Text as="h1" dangerouslySetInnerHTML={{ __html: props.title }} />
 
-        <Text as="div" $color="sandstone" $fontSize="2" $pt={2}>
-          {dateCreated}
+        <Text as="div" $fontSize="2" $fontStyle="italic" $pt={2}>
+          {formatDate(props.date)}
         </Text>
 
         <Box $py={[3, 4]}>
-          <img alt={featuredImage} src={featuredImage} width="100%" />
+          <img
+            alt={props.featuredImage.altText}
+            src={props.featuredImage.sourceUrl}
+            srcSet={props.featuredImage.srcSet}
+            style={{ maxWidth: '100%' }}
+          />
         </Box>
       </Container>
 
       <Container $direction="column" $maxWidth="600px" $p={[2, 0]}>
-        <Article dangerouslySetInnerHTML={{ __html: content }} />
+        <Article dangerouslySetInnerHTML={{ __html: props.content }} />
       </Container>
     </BasicTemplate>
   );
 }
 
-Posts.getInitialProps = ({ query }: NextPageContext) => {
-  return apiFetch({
-    query: /* GraphQL */ `
-      query getPost($preview: Boolean, $slug: String!) {
-        post(preview: $preview, slug: $slug) {
-          content
-          dateCreated(format: "LLLL dd, yyyy")
-          featuredMedia {
-            sizes {
-              full {
-                url
-              }
-            }
-          }
-          title
+interface PostProps {
+  date: string;
+  content: string;
+  excerpt: string;
+  title: string;
+  featuredImage: {
+    altText: string;
+    sourceUrl: string;
+    srcSet: string;
+  };
+}
+
+interface ServerSidePropsArgs extends GetServerSidePropsContext {
+  params: { slug: string };
+}
+
+export async function getServerSideProps({ params }: ServerSidePropsArgs) {
+  const query = /* GraphQL */ `
+    query getPost($slug: ID!) {
+      post(id: $slug, idType: URI) {
+        date
+        content(format: RENDERED)
+        excerpt(format: RENDERED)
+        title(format: RENDERED)
+        featuredImage {
+          altText
+          sourceUrl(size: MEDIUM_LARGE)
+          srcSet
         }
       }
-    `,
-    variables: { preview: query.preview === 'true', slug: query.slug }
+    }
+  `;
+
+  const { data } = await apiFetch({
+    query,
+    variables: {
+      slug: params.slug
+    }
   });
-};
+
+  return {
+    props: data.post
+  };
+}
 
 export default Posts;

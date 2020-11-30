@@ -39,7 +39,8 @@ module.exports = {
         MYSQL_HOST: 'replace_me',
         MYSQL_PASSWORD: 'replace_me',
         MYSQL_USER: 'replace_me',
-        WORDPRESS_URL: 'https://dev.replace_me.com'
+        WORDPRESS_URL: 'https://dev.replace_me.com',
+        NEXT_PUBLIC_WORDPRESS_URL: 'https://dev.replace_me.com'
       }
     },
 
@@ -57,7 +58,8 @@ module.exports = {
         MYSQL_HOST: 'replace_me',
         MYSQL_PASSWORD: 'replace_me',
         MYSQL_USER: 'replace_me',
-        WORDPRESS_URL: 'https://stage.replace_me.com'
+        WORDPRESS_URL: 'https://stage.replace_me.com',
+        NEXT_PUBLIC_WORDPRESS_URL: 'https://stage.replace_me.com'
       }
     },
 
@@ -75,7 +77,8 @@ module.exports = {
         MYSQL_HOST: 'replace_me',
         MYSQL_PASSWORD: 'replace_me',
         MYSQL_USER: 'replace_me',
-        WORDPRESS_URL: 'https://replace_me.com'
+        WORDPRESS_URL: 'https://replace_me.com',
+        NEXT_PUBLIC_WORDPRESS_URL: 'https://replace_me.com'
       }
     }
   }
