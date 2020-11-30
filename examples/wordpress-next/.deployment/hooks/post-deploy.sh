@@ -22,9 +22,9 @@ printHeading() {
 	printf '%b%s%b\n' "${bold}${underline}" "$@" "$reset"
 }
 
-updateWordPressPlugins() {
+diffWordPressPlugins() {
 	pushd "$WORDPRESS_PATH"
-	wp plugin-list restore $pluginsFile
+	wp plugin-list restore $pluginsFile --dry-run
 	popd
 }
 
@@ -40,8 +40,9 @@ main() {
 	pm2 save
 
 	# Forces plugins to match those found in the $pluginsFile
-	printHeading 'Updating WordPress Plugins…'
-	updateWordPressPlugins
+	printHeading 'WordPress Plugin Differences…'
+	echo 'Differences between the repo plugin.json and plugins on the server:'
+	diffWordPressPlugins
 
 	# Reload using the latest Nginx config
 	printHeading 'Reloading Nginx…'
