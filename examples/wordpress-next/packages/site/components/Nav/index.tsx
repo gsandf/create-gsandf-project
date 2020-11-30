@@ -1,7 +1,7 @@
 import Link from 'next/link';
+import { transparentize } from 'polished';
 import React from 'react';
 import styled from 'styled-components';
-import { transparentize } from 'polished';
 
 // TODO: replace with navigation routes from site
 const routes = [

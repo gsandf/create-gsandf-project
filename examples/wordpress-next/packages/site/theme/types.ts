@@ -1,3 +1,4 @@
+import React from 'react';
 export type CommonCSSValues = 'inherit' | 'initial' | 'unset';
 
 export type BreakpointNumber = number | number[];

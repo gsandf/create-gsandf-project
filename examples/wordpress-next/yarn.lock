@@ -2747,7 +2747,7 @@ eslint-visitor-keys@^2.0.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-2.0.0.tgz#21fdc8fbcd9c795cc0321f0563702095751511a8"
   integrity sha512-QudtT6av5WXels9WjIM7qz1XD1cWGvX4gGXvp/zBn9nXG02D0utdU3Em2m/QjTnrsk6bBjmCygl3rmj118msQQ==
 
-eslint@^7.4.0:
+eslint@^7.14.0, eslint@^7.4.0:
   version "7.14.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.14.0.tgz#2d2cac1d28174c510a97b377f122a5507958e344"
   integrity sha512-5YubdnPXrlrYAFCKybPuHIAH++PINe1pmKNc5wQRB9HSbqIK1ywAnntE3Wwua4giKu0bjligf1gLF6qxMGOYRA==
@@ -3981,9 +3981,9 @@ lines-and-columns@^1.1.6:
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
 linguist-languages@^7.5.1:
-  version "7.9.0"
-  resolved "https://registry.yarnpkg.com/linguist-languages/-/linguist-languages-7.9.0.tgz#025b421ff3acfdf9c9b34640816041bf842b5437"
-  integrity sha512-saKTpS7BH8vOOwzrZNTkFL/DuT2JN7cg6oHWY8nAjt89+pV1qFcpbjEEcZdAv9ogc4DcxVFHkXmjeyU/DiFHQw==
+  version "7.12.1"
+  resolved "https://registry.yarnpkg.com/linguist-languages/-/linguist-languages-7.12.1.tgz#bf4928f25953ce3e00369cf956ac4d016923d55f"
+  integrity sha512-+2CmUIeNOvJ7MWn6MY5h7mpDcw62MjKjXKC1wH0zLYnDQnn/0/+j3LcWO0v4+M9Vh/yqbt0codmlA7Z82bDnLA==
 
 listr-silent-renderer@^1.1.1:
   version "1.1.1"

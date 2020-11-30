@@ -3,7 +3,8 @@
 /**
  * Clears a cache in Next.js that handles GraphQL requests
  */
-function gsandf_wordpress_clear_nextjs_cache() {
+function gsandf_wordpress_clear_nextjs_cache()
+{
   $endpoint = sprintf(
     '%s://%s:%s%s',
     $_SERVER['REQUEST_SCHEME'],
@@ -18,7 +19,8 @@ function gsandf_wordpress_clear_nextjs_cache() {
 /**
  * Add action to admin toolbar to clear the cache
  */
-function modify_admin_bar($wp_admin_bar) {
+function modify_admin_bar($wp_admin_bar)
+{
   $wp_admin_bar->add_node([
     'id' => 'gsandf_wordpress_clear_nextjs_cache',
     'title' => 'Clear Theme Cache',
