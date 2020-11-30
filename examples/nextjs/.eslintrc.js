@@ -7,15 +7,29 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
+  root: true,
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/no-empty-interface': [
+      'error',
+      { allowSingleExtends: true }
+    ],
     '@typescript-eslint/no-explicit-any': 'off'
   },
   overrides: [
     {
       files: ['*.js', '*.jsx'],
       rules: { '@typescript-eslint/explicit-module-boundary-types': 'off' }
+    },
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        // Turn off rules that TypeScript ESLint handles
+        'no-undef': 'off',
+        'no-unused-vars': 'off',
+        'no-use-before-define': 'off'
+      }
     }
   ]
 };
