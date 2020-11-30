@@ -1,7 +1,12 @@
-import { normalize } from 'polished';
-import { createGlobalStyle, css } from 'styled-components';
-import * as mixins from './mixins';
+import { normalize, transparentize } from 'polished';
+import {
+  createGlobalStyle,
+  DefaultTheme,
+  GlobalStyleComponent
+} from 'styled-components';
 import { breakpoints, media } from './breakpoints';
+import { anchorStyles, buttonStyles } from './component-styles';
+import * as mixins from './mixins';
 
 const palette = {
   backgroundOrange: '#f26825',
@@ -39,6 +44,10 @@ export const colors = {
   textLight: palette.white
 };
 
+export const borders = {
+  thick: `8px solid ${colors.dark}`
+};
+
 export const fonts = {
   body:
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -67,26 +76,14 @@ export const fontWeights = {
 
 export const lineHeights = {
   body: 1.89,
+  control: 1.15,
   heading: 1.3
 };
 
 export const radii = {
   none: '0',
   sm: '2px',
-  md: '6px',
-  lg: '10px'
-};
-
-export const shadows = {
-  default: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-  md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-  lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-  xl:
-    '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-  '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-  inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
-  outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
-  none: 'none'
+  md: '6px'
 };
 
 export const sizes = {
@@ -139,6 +136,24 @@ export const space = [
   '32rem'
 ];
 
+export const shadows = {
+  accentN: `0 -${space[4]} 0 0 ${colors.accent}`,
+  accentS: `0 ${space[4]} 0 0 ${colors.accent}`,
+  accentE: `${space[4]} 0 0 0 ${colors.accent}`,
+  accentW: `-${space[4]} 0 0 0 ${colors.accent}`,
+  accentNE: `${space[4]} -${space[4]} 0 0 ${colors.accent}`,
+  accentNW: `-${space[4]} -${space[4]} 0 0 ${colors.accent}`,
+  accentSE: `${space[4]} ${space[4]} 0 0 ${colors.accent}`,
+  accentSW: `-${space[4]} ${space[4]} 0 0 ${colors.accent}`,
+  default: '0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.1)',
+  md: '4px 4px 8px 0 rgba(0, 0, 0, 0.2)',
+  lg: '0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
+  nav: `0 4px 10px 0 rgba(1, 0, 0, 0.07)`,
+  inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+  outline: `0 0 0 3px ${colors.accent}`,
+  none: 'none'
+};
+
 export const textStyles = {
   default: {
     fontFamily: fonts.body,
@@ -153,7 +168,10 @@ export const textStyles = {
   }
 };
 
-export const styles = createGlobalStyle`
+export const styles: GlobalStyleComponent<
+  unknown,
+  DefaultTheme
+> = createGlobalStyle`
   ${normalize()}
 
   *, *::after, *::before {
@@ -173,15 +191,24 @@ export const styles = createGlobalStyle`
     ${textStyles.default}
   }
 
-  a:not([class]) {
-    color: ${colors.accent};
-    text-decoration: underline;
+  p a:not([class]) {
+    ${anchorStyles}
+  }
+
+  code:not([class]) {
+    background-color: ${colors.softGrey};
+    border-radius: ${radii.md};
+    color: ${transparentize(0.35, colors.primary)};
+    padding: 0.1em 0.2em;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: ${fonts.heading};
-    line-height: ${lineHeights.heading};
+    ${textStyles.heading};
     margin: 0;
+
+    > p:not([class]) {
+      margin: 0;
+    }
   }
 
   h1 {
@@ -206,26 +233,7 @@ export const styles = createGlobalStyle`
 `;
 
 export const components: any = {
-  Button: css`
-    background-color: ${colors.accent};
-    border-width: 0;
-    color: ${colors.textDark};
-    cursor: default;
-    font-family: ${fonts.body};
-    font-weight: ${fontWeights.button};
-    letter-spacing: 1.45px;
-    padding: ${space[2]} ${space[3]};
-    text-transform: uppercase;
-    transition: box-shadow 300ms ease;
-
-    :hover {
-      box-shadow: ${shadows.lg};
-    }
-
-    ${media.up.sm(css`
-      padding: ${space[3]} ${space[4]};
-    `)}
-  `
+  Button: buttonStyles
 };
 
 export { breakpoints, media, mixins };

@@ -17,7 +17,6 @@ export default class Document extends NextDocument {
 
       return {
         ...initialProps,
-        allowsTracking: ctx.req?.headers.dnt !== '1',
         styles: (
           <>
             {initialProps.styles}

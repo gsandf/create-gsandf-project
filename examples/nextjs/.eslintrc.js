@@ -9,7 +9,8 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   root: true,
   rules: {
-    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-function-return-type': ['off'],
+    '@typescript-eslint/explicit-module-boundary-types': ['off'],
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-empty-interface': [
       'error',
@@ -18,10 +19,6 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off'
   },
   overrides: [
-    {
-      files: ['*.js', '*.jsx'],
-      rules: { '@typescript-eslint/explicit-module-boundary-types': 'off' }
-    },
     {
       files: ['*.ts', '*.tsx'],
       rules: {
