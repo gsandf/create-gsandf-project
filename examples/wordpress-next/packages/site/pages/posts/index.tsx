@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import React from 'react';
-import { get } from 'unchanged';
 import { apiFetch, GraphQLResponse } from '../../api';
 import { Box, Container } from '../../components/common';
 import { PostBox, PostList } from '../../components/Posts/components';
