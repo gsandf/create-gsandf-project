@@ -1,16 +1,17 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
-import styled from 'styled-components';
-import { Box, Flex, Text } from '../components/common';
+import styled, { css } from 'styled-components';
+import { Box, Container, Flex, Text } from '../components/common';
+import BasicLayout from '../templates/Basic';
 
 const Card = styled.a`
   border-color: ${p => p.theme.colors.lightGrey};
-  border-radius: ${p => p.theme.radii.lg};
+  border-radius: ${p => p.theme.radii.md};
   border-style: solid;
   border-width: 1px;
   color: inherit;
-  flex-basis: 45%;
+  flex: 1 0 100%;
   margin: ${p => p.theme.space[3]};
   padding: ${p => p.theme.space[3]};
   text-decoration: none;
@@ -22,6 +23,11 @@ const Card = styled.a`
     color: ${p => p.theme.colors.accent};
     border-color: ${p => p.theme.colors.accent};
   }
+
+  ${p =>
+    p.theme.media.up.sm(css`
+      flex-basis: 45%;
+    `)}
 `;
 
 const Header = styled.h1`
@@ -36,32 +42,36 @@ const Header = styled.h1`
 
 export default function Home(): JSX.Element {
   return (
-    <div>
+    <BasicLayout
+      keywords={['example', 'site', 'GS&F']}
+      metaDescription="Welcome to a hackable WordPress theme"
+      title="Starter Theme | Home"
+    >
       <Head>
         <title>GS&amp;F Vanilla Site</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <Flex as="header" $justifyContent="center" $bg="darken" $py={6}>
-          <Box $px={[4, 5]} $maxWidth={['full', '600px']}>
-            <Header>Welcome to a hackable site starter</Header>
-          </Box>
-        </Flex>
-
-        <Box $px={[3, 3, 6, 7]} $py={4}>
-          <p>
-            Next.js will serve each file in <code>`/pages`</code> under a
-            pathname matching the filename. For example,{' '}
-            <code>`/pages/about.js`</code> is served at{' '}
-            <Link href="/about">
-              <a>localhost:3000/about</a>
-            </Link>
-            .
-          </p>
+      <Flex as="header" $justifyContent="center" $bg="darken" $py={6}>
+        <Box $px={[4, 5]} $maxWidth={['full', '600px']}>
+          <Header>Welcome to a hackable site starter</Header>
         </Box>
+      </Flex>
 
-        <Flex $justifyContent="center" $px={[0, 0, 6, 7]} $py={4} $wrap="wrap">
+      <Container $px={2} $py={4}>
+        <p>
+          Next.js will serve each file in <code>/pages</code> under a pathname
+          matching the filename. For example, <code>/pages/about.tsx</code> is
+          served at{' '}
+          <Link href="/about">
+            <a>localhost:3000/about</a>
+          </Link>
+          .
+        </p>
+      </Container>
+
+      <Container $px={2} $py={4}>
+        <Flex $justifyContent="center" $wrap="wrap">
           <Card href="https://nextjs.org/docs">
             <Text as="h3">Documentation &rarr;</Text>
             <Text as="p">
@@ -90,7 +100,7 @@ export default function Home(): JSX.Element {
             </Text>
           </Card>
         </Flex>
-      </main>
-    </div>
+      </Container>
+    </BasicLayout>
   );
 }
