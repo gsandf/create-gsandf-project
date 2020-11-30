@@ -19,21 +19,26 @@ export const PostList = styled.ul`
 `;
 
 export const PostBox = styled(Box).attrs({ as: 'li' })<{ background: string }>`
-  background-image: url("${p => p.background}");
+  background-image: url('${p => p.background}');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
-  font-size: ${p => p.theme.fontSizes[4]};
+  font-size: ${p => p.theme.fontSizes[3]};
   font-weight: bold;
   height: ${p => p.theme.sizes.md};
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 300ms ease;
 
   a {
     color: inherit;
+    display: block;
     flex: 1;
     padding: ${p => p.theme.space[3]};
     text-decoration: none;
-    display: block;
+  }
+
+  :hover {
+    box-shadow: ${p => p.theme.shadows.lg};
   }
 `;

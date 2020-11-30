@@ -1,23 +1,24 @@
 import { getValueAndUnit } from 'polished';
-import { css, FlattenSimpleInterpolation } from 'styled-components';
+import { css, CSSProp } from 'styled-components';
 
 export const breakpoints = {
-  sm: '575px',
-  md: '968px',
-  lg: '1224px',
-  xl: '1440px'
+  sm: '480px',
+  md: '768px',
+  lg: '992px',
+  xl: '1200px',
+  xxl: '1440px'
 };
 
-const createMinWidthQuery = (width: string) => (
-  styles: FlattenSimpleInterpolation
+export const createMinWidthQuery: any = (width: string) => (
+  styles: CSSProp
 ) => css`
   @media (min-width: ${width}) {
     ${styles}
   }
 `;
 
-const createMaxWidthQuery = (width: string) => (
-  styles: FlattenSimpleInterpolation
+export const createMaxWidthQuery: any = (width: string) => (
+  styles: CSSProp
 ) => {
   const [value, unit] = getValueAndUnit(width);
 
@@ -33,12 +34,14 @@ export const media = {
     sm: createMaxWidthQuery(breakpoints.sm),
     md: createMaxWidthQuery(breakpoints.md),
     lg: createMaxWidthQuery(breakpoints.lg),
-    xl: createMaxWidthQuery(breakpoints.xl)
+    xl: createMaxWidthQuery(breakpoints.xl),
+    xxl: createMaxWidthQuery(breakpoints.xxl)
   },
   up: {
     sm: createMinWidthQuery(breakpoints.sm),
     md: createMinWidthQuery(breakpoints.md),
     lg: createMinWidthQuery(breakpoints.lg),
-    xl: createMinWidthQuery(breakpoints.xl)
+    xl: createMinWidthQuery(breakpoints.xl),
+    xxl: createMaxWidthQuery(breakpoints.xxl)
   }
 };

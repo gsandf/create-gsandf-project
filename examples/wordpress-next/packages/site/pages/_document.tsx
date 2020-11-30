@@ -1,9 +1,9 @@
-import NextDocument from 'next/document';
+import NextDocument, { DocumentContext } from 'next/document';
 import React from 'react';
 import { ServerStyleSheet } from 'styled-components';
 
 export default class Document extends NextDocument {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
@@ -17,6 +17,7 @@ export default class Document extends NextDocument {
 
       return {
         ...initialProps,
+        allowsTracking: ctx.req?.headers.dnt !== '1',
         styles: (
           <>
             {initialProps.styles}

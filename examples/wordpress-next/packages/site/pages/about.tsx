@@ -4,7 +4,7 @@ import BasicLayout from '../templates/Basic';
 
 function About() {
   return (
-    <BasicLayout>
+    <BasicLayout title="Starter Theme | About">
       <Box as="header" $bg="dark" $color="onDark" $p={6}>
         <h1>About</h1>
       </Box>

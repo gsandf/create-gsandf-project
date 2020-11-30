@@ -7,7 +7,7 @@ export * from './types';
 const mediaQueries = Object.values(media.up);
 
 function createRuleForProp(ruleName: string, themePath: string, prop: string) {
-  function createRule(props: object): string {
+  function createRule(props: any): string {
     const propValue = get(prop, props);
 
     // Don't create any rules if no value was supplied
@@ -56,6 +56,7 @@ export const flexContainerMixin = css`
 `;
 
 export const themeBordersMixin = css`
+  ${createRuleForProp('border', 'theme.borders', '$border')}
   ${createRuleForProp('border-radius', 'theme.radii', '$borderRadius')}
 `;
 
@@ -70,6 +71,7 @@ export const themeFontsMixin = css`
   ${createRuleForProp('font-style', '', '$fontStyle')}
   ${createRuleForProp('font-weight', 'theme.fontWeights', '$fontWeight')}
   ${createRuleForProp('line-height', 'theme.lineHeights', '$lineHeight')}
+  ${createRuleForProp('text-align', '', '$textAlign')}
   ${createRuleForProp('text-transform', '', '$textTransform')}
 `;
 

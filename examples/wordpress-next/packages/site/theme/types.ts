@@ -2,7 +2,22 @@ export type CommonCSSValues = 'inherit' | 'initial' | 'unset';
 
 export type BreakpointNumber = number | number[];
 export type BreakpointString = string | string[];
-export type BreakpointRule = BreakpointNumber | BreakpointString;
+export type BreakpointRule = number | string | Array<BreakpointRule>;
+
+export type TextAlignment =
+  | '-moz-center'
+  | '-webkit-center'
+  | 'center'
+  | 'end'
+  | 'justify-all'
+  | 'justify'
+  | 'left'
+  | 'match-parent'
+  | 'right'
+  | 'start'
+  | string
+  | CommonCSSValues
+  | TextAlignment[];
 
 export type CommonFlexRules =
   | 'center'
@@ -50,6 +65,7 @@ export type FlexWrap =
 export interface FlexChildProps {
   $alignSelf?: CommonFlexRules;
   $basis?: BreakpointString;
+  $flex?: BreakpointString;
   $grow?: BreakpointRule;
   $justifySelf?: CommonFlexRules;
   $shrink?: BreakpointRule;
@@ -66,6 +82,7 @@ export interface FlexContainerProps {
 }
 
 export interface ThemeBordersMixinProps {
+  $border?: BreakpointString;
   $borderRadius?: BreakpointRule;
 }
 
@@ -76,10 +93,11 @@ export interface ThemeColorsMixinProps {
 
 export interface ThemeFontsMixinProps {
   $font?: BreakpointString;
-  $fontSize?: BreakpointString;
+  $fontSize?: BreakpointRule;
   $fontStyle?: BreakpointString;
   $fontWeight?: BreakpointRule;
   $lineHeight?: BreakpointRule;
+  $textAlign?: TextAlignment;
   $textTransform?: BreakpointString;
 }
 
@@ -115,6 +133,11 @@ export interface ThemeSpaceMixinProps {
   $py?: BreakpointRule;
 }
 
+export interface BaseComponentProps {
+  children?: React.ReactNode;
+  style?: React.CSSProperties;
+}
+
 export type ThemeMixinProps = FlexChildProps &
   FlexContainerProps &
   ThemeBordersMixinProps &
@@ -122,4 +145,5 @@ export type ThemeMixinProps = FlexChildProps &
   ThemeFontsMixinProps &
   ThemeShadowsMixinProps &
   ThemeSizeMixinProps &
-  ThemeSpaceMixinProps;
+  ThemeSpaceMixinProps &
+  BaseComponentProps;
