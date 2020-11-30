@@ -13,6 +13,8 @@ npx create-gsandf-project --example <example-name> <project-name>
 
 ## Available Starters
 
+- [Next.js](./examples/nextjs/)
+- [Universal TypeScript](./examples/universal-typescript/)
 - [WordPress + Next.js](./examples/wordpress-next/)
 
 ## License
