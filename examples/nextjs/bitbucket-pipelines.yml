@@ -1,0 +1,18 @@
+image: node:14
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - node
+          - yarn
+        script:
+          - yarn install --prefer-offline
+          - yarn format-check
+          - yarn lint
+          - yarn typeCheck
+          - yarn test
+
+definitions:
+  caches:
+    yarn: /usr/local/share/.cache/yarn

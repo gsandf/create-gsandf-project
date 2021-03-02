@@ -16,13 +16,15 @@ module.exports = {
       'error',
       { allowSingleExtends: true }
     ],
-    '@typescript-eslint/no-explicit-any': 'off'
+    '@typescript-eslint/no-explicit-any': 'off',
+    'react/jsx-key': ['error', { checkFragmentShorthand: true }]
   },
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
       rules: {
         // Turn off rules that TypeScript ESLint handles
+        camelcase: 'off',
         'no-undef': 'off',
         'no-unused-vars': 'off',
         'no-use-before-define': 'off'
