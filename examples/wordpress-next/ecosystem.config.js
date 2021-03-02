@@ -11,7 +11,7 @@ const commonEnv = {
   WORDPRESS_PATH: '/var/www/wordpress',
   WORDPRESS_PLUGIN_FILE: `${commonSetup.path}/current/plugins.json`,
   WORDPRESS_THEME: 'gsandf-react',
-  WORDPRESS_TITLE: JSON.stringify('replace_me'),
+  WORDPRESS_TITLE: encodeURIComponent('replace_me'),
   WORDPRESS_VERSION: 'latest'
 };
 
