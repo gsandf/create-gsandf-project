@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 import Nav from '../components/Nav';
-import { absoluteURL } from '../utils/absolute-url';
+import { absoluteURL } from '../lib/absolute-url';
 
 export interface BasicTemplateProps {
   children: JSX.Element | JSX.Element[];

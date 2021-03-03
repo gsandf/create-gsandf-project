@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { absoluteURL } from './utils/absolute-url';
+import { absoluteURL } from './lib/absolute-url';
 
 const graphqlEndpoint = absoluteURL('/graphql');
 

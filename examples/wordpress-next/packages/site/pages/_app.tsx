@@ -1,8 +1,8 @@
 import NextApp from 'next/app';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import signature from '../lib/signature';
 import theme from '../theme';
-import signature from '../utils/signature';
 
 export default class App extends NextApp {
   componentDidMount() {
