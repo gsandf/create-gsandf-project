@@ -203,11 +203,6 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@blakek/array-split@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@blakek/array-split/-/array-split-2.0.1.tgz#8380bc7234e316eaa776969ed94b703a8763aaef"
-  integrity sha512-Dj12iQ9co2uBkJcQClJfPfwJc/xkZEGYyu8SfvRvknDt8+o/vuusc577fcgha3HDZDZKkFybJ8GWLXe6ufmorw==
-
 "@blakek/curry@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@blakek/curry/-/curry-2.0.2.tgz#979e927bcf5fa0426d2af681d7131df5791d1cd4"

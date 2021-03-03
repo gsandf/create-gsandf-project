@@ -1,5 +1,5 @@
+import { isServer } from 'lib/render-environment';
 import React, { SuspenseProps } from 'react';
-import { isServer } from '../utils/render-environment';
 
 function NoServerRender(props: Partial<SuspenseProps>) {
   if (isServer) return null;
