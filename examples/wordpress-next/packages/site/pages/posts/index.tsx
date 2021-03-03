@@ -22,7 +22,7 @@ interface PostProps extends GraphQLResponse {
 function Posts({ data }: PostProps) {
   return (
     <BasicTemplate>
-      <Box as="header" $bg="accent" $color="onAccent" $p={6}>
+      <Box as="header" $bgColor="accent" $color="onAccent" $p={6}>
         <h1>Posts</h1>
       </Box>
 
@@ -31,7 +31,7 @@ function Posts({ data }: PostProps) {
           {data.posts.nodes.map(({ featuredImage, slug, title }) => (
             <PostBox
               background={featuredImage?.sourceUrl ?? ''}
-              $bg="dark"
+              $bgColor="dark"
               $color="onDark"
               key={slug}
             >

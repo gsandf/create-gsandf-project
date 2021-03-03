@@ -19,7 +19,8 @@ export const PostList = styled.ul`
 `;
 
 export const PostBox = styled(Box).attrs({ as: 'li' })<{ background: string }>`
-  background-image: url('${p => p.background}');
+  background-image: linear-gradient(#0005 0, #0005 100%),
+    url('${p => p.background}');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -39,6 +40,6 @@ export const PostBox = styled(Box).attrs({ as: 'li' })<{ background: string }>`
   }
 
   :hover {
-    box-shadow: ${p => p.theme.shadows.lg};
+    box-shadow: ${p => p.theme.shadows.outline};
   }
 `;

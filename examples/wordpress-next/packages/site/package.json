@@ -4,16 +4,31 @@
   "main": "index.js",
   "author": "GS&F Devs <mindreactor@gsandf.com> (https://gsandf.com/)",
   "license": "MIT",
+  "ava": {
+    "extensions": [
+      "js",
+      "ts"
+    ],
+    "files": [
+      "./**/*.test.ts"
+    ],
+    "ignoredByWatcher": [
+      "!src/**"
+    ],
+    "require": [
+      "ts-node/register/transpile-only"
+    ]
+  },
   "dependencies": {
     "@blakek/array-split": "^2.0.1",
-    "@types/node": "^14.6.0",
-    "@types/react": "^17.0.0",
-    "@types/styled-components": "^5.1.2",
+    "@blakek/deep": "^2.1.1",
+    "@types/node": "^14.14.31",
+    "@types/react": "^17.0.2",
+    "@types/styled-components": "^5.1.7",
     "axios": "^0.21.1",
-    "date-fns": "^2.16.1",
-    "next": "^10.0.3",
-    "polished": "^4.0.5",
-    "quick-lru": "^5.1.1",
+    "date-fns": "^2.18.0",
+    "next": "^10.0.7",
+    "polished": "^4.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "styled-components": "^5.2.1",
@@ -26,13 +41,15 @@
     "format-check": "prettier --check **/*.{js,ts,tsx}",
     "lint": "eslint --config ../../.eslintrc.js --ext .js,.jsx,.ts,.tsx .",
     "start": "next start",
-    "test": "jest",
+    "test": "ava",
     "typeCheck": "tsc --noEmit",
     "validate": "run-p format-check lint typeCheck"
   },
   "devDependencies": {
-    "amper-scripts": "^1.0.0-1",
+    "amper-scripts": "^1.0.0",
+    "ava": "^3.15.0",
     "babel-plugin-styled-components": "^1.11.1",
-    "typescript": "^4.0.2"
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.2"
   }
 }

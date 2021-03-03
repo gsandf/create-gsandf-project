@@ -6,12 +6,8 @@ const commonSetup = {
 
 const commonEnv = {
   NODE_ENV: 'production',
-  WORDPRESS_ADMIN_PASSWORD: 'replace_me',
-  WORDPRESS_ADMIN_USER: 'replace_me',
   WORDPRESS_PATH: '/var/www/wordpress',
-  WORDPRESS_PLUGIN_FILE: `${commonSetup.path}/current/plugins.json`,
   WORDPRESS_THEME: 'gsandf-react',
-  WORDPRESS_TITLE: encodeURIComponent('replace_me'),
   WORDPRESS_VERSION: 'latest'
 };
 
@@ -35,12 +31,8 @@ module.exports = {
       ref: 'origin/develop',
       env: {
         ...commonEnv,
-        MYSQL_DATABASE: 'replace_me',
-        MYSQL_HOST: 'replace_me',
-        MYSQL_PASSWORD: 'replace_me',
-        MYSQL_USER: 'replace_me',
-        WORDPRESS_URL: 'https://dev.replace_me.com',
-        NEXT_PUBLIC_WORDPRESS_URL: 'https://dev.replace_me.com'
+        NEXT_PUBLIC_WORDPRESS_URL: 'https://dev.replace_me.com',
+        WORDPRESS_URL: 'https://dev.replace_me.com'
       }
     },
 
@@ -54,12 +46,8 @@ module.exports = {
       ref: 'origin/staging',
       env: {
         ...commonEnv,
-        MYSQL_DATABASE: 'replace_me',
-        MYSQL_HOST: 'replace_me',
-        MYSQL_PASSWORD: 'replace_me',
-        MYSQL_USER: 'replace_me',
-        WORDPRESS_URL: 'https://stage.replace_me.com',
-        NEXT_PUBLIC_WORDPRESS_URL: 'https://stage.replace_me.com'
+        NEXT_PUBLIC_WORDPRESS_URL: 'https://stage.replace_me.com',
+        WORDPRESS_URL: 'https://stage.replace_me.com'
       }
     },
 
@@ -73,12 +61,8 @@ module.exports = {
       ref: 'origin/master',
       env: {
         ...commonEnv,
-        MYSQL_DATABASE: 'replace_me',
-        MYSQL_HOST: 'replace_me',
-        MYSQL_PASSWORD: 'replace_me',
-        MYSQL_USER: 'replace_me',
-        WORDPRESS_URL: 'https://replace_me.com',
-        NEXT_PUBLIC_WORDPRESS_URL: 'https://replace_me.com'
+        NEXT_PUBLIC_WORDPRESS_URL: 'https://replace_me.com',
+        WORDPRESS_URL: 'https://replace_me.com'
       }
     }
   }

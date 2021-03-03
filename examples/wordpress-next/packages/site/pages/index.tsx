@@ -5,7 +5,7 @@ import { Box, Container, Flex, Text } from '../components/common';
 import BasicLayout from '../templates/Basic';
 
 const Card = styled.a`
-  border-color: ${p => p.theme.colors.lightGrey};
+  border-color: ${p => p.theme.colors.gray700};
   border-radius: ${p => p.theme.radii.md};
   border-style: solid;
   border-width: 1px;
@@ -14,13 +14,14 @@ const Card = styled.a`
   margin: ${p => p.theme.space[3]};
   padding: ${p => p.theme.space[3]};
   text-decoration: none;
-  transition: color 150ms ease, border-color 150ms ease;
+  transition: all 250ms ease;
 
   :hover,
   :focus,
   :active {
-    color: ${p => p.theme.colors.accent};
+    background-color: ${p => p.theme.colors.accent};
     border-color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.onAccent};
   }
 
   ${p =>
@@ -30,10 +31,10 @@ const Card = styled.a`
 `;
 
 const Header = styled.h1`
-  background-color: ${p => p.theme.colors.secondary};
-  box-shadow: 0.5em 0 0 ${p => p.theme.colors.secondary},
-    -0.5em 0 0 ${p => p.theme.colors.secondary};
-  color: ${p => p.theme.colors.onSecondary};
+  background-color: ${p => p.theme.colors.accent};
+  box-shadow: 0.5em 0 0 ${p => p.theme.colors.accent},
+    -0.5em 0 0 ${p => p.theme.colors.accent};
+  color: ${p => p.theme.colors.onAccent};
   display: inline;
   text-transform: uppercase;
   ${p => p.theme.mixins.themeMixin}
@@ -46,7 +47,7 @@ function Home() {
       metaDescription="Welcome to a hackable WordPress theme"
       title="Starter Theme | Home"
     >
-      <Flex as="header" $justifyContent="center" $bg="darken" $py={6}>
+      <Flex as="header" $justifyContent="center" $bgColor="darken" $py={6}>
         <Box $px={[4, 5]} $maxWidth={['full', '600px']}>
           <Header>Welcome to a hackable WordPress theme</Header>
         </Box>

@@ -146,10 +146,6 @@ setupWordPress() {
 		echo '… activating custom theme'
 		wp theme activate "$WORDPRESS_THEME"
 	fi
-
-	# Install WordPress plugins
-	echo '… installing plugins'
-	wp plugin-list restore "$WORDPRESS_PLUGIN_FILE"
 }
 
 main() {

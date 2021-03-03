@@ -1,137 +1,98 @@
-import React from 'react';
-export type CommonCSSValues = 'inherit' | 'initial' | 'unset';
+import React, { CSSProperties } from 'react';
+import { DefaultTheme } from 'styled-components';
 
-export type BreakpointNumber = number | number[];
-export type BreakpointString = string | string[];
-export type BreakpointRule = number | string | Array<BreakpointRule>;
+export type ResponsiveRule<T> = T | T[];
+export type ThemeKey<K extends keyof DefaultTheme> = keyof DefaultTheme[K];
 
-export type TextAlignment =
-  | '-moz-center'
-  | '-webkit-center'
-  | 'center'
-  | 'end'
-  | 'justify-all'
-  | 'justify'
-  | 'left'
-  | 'match-parent'
-  | 'right'
-  | 'start'
-  | string
-  | CommonCSSValues
-  | TextAlignment[];
-
-export type CommonFlexRules =
-  | 'center'
-  | 'end'
-  | 'flex-end'
-  | 'flex-start'
-  | 'normal'
-  | 'safe center'
-  | 'start'
-  | 'stretch'
-  | 'unsafe center'
-  | CommonCSSValues;
-
-export type FlexAlignment =
-  | 'baseline'
-  | 'first baseline'
-  | 'last baseline'
-  | CommonFlexRules
-  | FlexAlignment[];
-
-export type FlexDirection =
-  | 'column-reverse'
-  | 'column'
-  | 'row-reverse'
-  | 'row'
-  | CommonCSSValues
-  | FlexDirection[];
-
-export type FlexJustification =
-  | 'left'
-  | 'right'
-  | 'space-around'
-  | 'space-between'
-  | 'space-evenly'
-  | CommonFlexRules
-  | FlexJustification[];
-
-export type FlexWrap =
-  | 'nowrap'
-  | 'wrap'
-  | 'wrap-reverse'
-  | CommonCSSValues
-  | FlexWrap[];
+export interface BoxMixinProps {
+  $display?: ResponsiveRule<CSSProperties['display']>;
+  $position?: ResponsiveRule<CSSProperties['position']>;
+}
 
 export interface FlexChildProps {
-  $alignSelf?: CommonFlexRules;
-  $basis?: BreakpointString;
-  $flex?: BreakpointString;
-  $grow?: BreakpointRule;
-  $justifySelf?: CommonFlexRules;
-  $shrink?: BreakpointRule;
+  $alignSelf?: ResponsiveRule<CSSProperties['alignSelf']>;
+  $basis?: ResponsiveRule<ThemeKey<'sizes'> | CSSProperties['flexBasis']>;
+  $flex?: ResponsiveRule<CSSProperties['flex']>;
+  $grow?: ResponsiveRule<CSSProperties['flexGrow']>;
+  $justifySelf?: ResponsiveRule<CSSProperties['justifySelf']>;
+  $shrink?: ResponsiveRule<CSSProperties['flexShrink']>;
 }
 
 export interface FlexContainerProps {
-  $alignItems?: FlexAlignment;
-
-  $justifyContent?: FlexJustification;
-
-  $direction?: FlexDirection;
-
-  $wrap?: FlexWrap;
+  $alignItems?: ResponsiveRule<CSSProperties['alignItems']>;
+  $justifyContent?: ResponsiveRule<CSSProperties['justifyContent']>;
+  $direction?: ResponsiveRule<CSSProperties['flexDirection']>;
+  $wrap?: ResponsiveRule<CSSProperties['flexWrap']>;
 }
 
 export interface ThemeBordersMixinProps {
-  $border?: BreakpointString;
-  $borderRadius?: BreakpointRule;
+  $border?: ResponsiveRule<ThemeKey<'borders'> | CSSProperties['border']>;
+  $borderRadius?: ResponsiveRule<
+    ThemeKey<'radii'> | CSSProperties['borderRadius']
+  >;
 }
 
 export interface ThemeColorsMixinProps {
-  $bg?: BreakpointString;
-  $color?: BreakpointString;
+  $bg?: ResponsiveRule<ThemeKey<'colors'> | CSSProperties['background']>;
+  $bgAttachment?: ResponsiveRule<CSSProperties['backgroundAttachment']>;
+  $bgClip?: ResponsiveRule<CSSProperties['backgroundClip']>;
+  $bgColor?: ResponsiveRule<
+    ThemeKey<'colors'> | CSSProperties['backgroundColor']
+  >;
+  $bgImage?: ResponsiveRule<CSSProperties['backgroundImage']>;
+  $bgOrigin?: ResponsiveRule<CSSProperties['backgroundOrigin']>;
+  $bgPosition?: ResponsiveRule<CSSProperties['backgroundPosition']>;
+  $bgRepeat?: ResponsiveRule<CSSProperties['backgroundRepeat']>;
+  $bgSize?: ResponsiveRule<CSSProperties['backgroundSize']>;
+  $color?: ResponsiveRule<ThemeKey<'colors'> | CSSProperties['color']>;
 }
 
 export interface ThemeFontsMixinProps {
-  $font?: BreakpointString;
-  $fontSize?: BreakpointRule;
-  $fontStyle?: BreakpointString;
-  $fontWeight?: BreakpointRule;
-  $lineHeight?: BreakpointRule;
-  $textAlign?: TextAlignment;
-  $textTransform?: BreakpointString;
+  $font?: ResponsiveRule<ThemeKey<'fonts'> | CSSProperties['fontFamily']>;
+  $fontSize?: ResponsiveRule<ThemeKey<'fontSizes'> | CSSProperties['fontSize']>;
+  $fontStyle?: ResponsiveRule<CSSProperties['fontStyle']>;
+  $fontWeight?: ResponsiveRule<
+    ThemeKey<'fontWeights'> | CSSProperties['fontWeight']
+  >;
+  $lineHeight?: ResponsiveRule<
+    ThemeKey<'lineHeights'> | CSSProperties['lineHeight']
+  >;
+  $textAlign?: ResponsiveRule<CSSProperties['textAlign']>;
+  $textTransform?: ResponsiveRule<CSSProperties['textTransform']>;
 }
 
 export interface ThemeShadowsMixinProps {
-  $shadow?: BreakpointString;
-  $textShadow?: BreakpointString;
+  $shadow?: ResponsiveRule<ThemeKey<'shadows'> | CSSProperties['boxShadow']>;
+  $textShadow?: ResponsiveRule<
+    ThemeKey<'shadows'> | CSSProperties['textShadow']
+  >;
 }
 
 export interface ThemeSizeMixinProps {
-  $flexBasis?: BreakpointRule;
-  $height?: BreakpointRule;
-  $maxHeight?: BreakpointRule;
-  $maxWidth?: BreakpointRule;
-  $minHeight?: BreakpointRule;
-  $minWidth?: BreakpointRule;
-  $width?: BreakpointRule;
+  $flexBasis?: ResponsiveRule<ThemeKey<'sizes'> | CSSProperties['flexBasis']>;
+  $height?: ResponsiveRule<ThemeKey<'sizes'> | CSSProperties['height']>;
+  $maxHeight?: ResponsiveRule<ThemeKey<'sizes'> | CSSProperties['maxHeight']>;
+  $maxWidth?: ResponsiveRule<ThemeKey<'sizes'> | CSSProperties['maxWidth']>;
+  $minHeight?: ResponsiveRule<ThemeKey<'sizes'> | CSSProperties['minHeight']>;
+  $minWidth?: ResponsiveRule<ThemeKey<'sizes'> | CSSProperties['minWidth']>;
+  $width?: ResponsiveRule<ThemeKey<'sizes'> | CSSProperties['width']>;
 }
 
 export interface ThemeSpaceMixinProps {
-  $m?: BreakpointRule;
-  $mb?: BreakpointRule;
-  $ml?: BreakpointRule;
-  $mr?: BreakpointRule;
-  $mt?: BreakpointRule;
-  $mx?: BreakpointRule;
-  $my?: BreakpointRule;
-  $p?: BreakpointRule;
-  $pb?: BreakpointRule;
-  $pl?: BreakpointRule;
-  $pr?: BreakpointRule;
-  $pt?: BreakpointRule;
-  $px?: BreakpointRule;
-  $py?: BreakpointRule;
+  $m?: ResponsiveRule<ThemeKey<'space'> | CSSProperties['margin']>;
+  $mb?: ResponsiveRule<ThemeKey<'space'> | CSSProperties['marginBottom']>;
+  $ml?: ResponsiveRule<ThemeKey<'space'> | CSSProperties['marginLeft']>;
+  $mr?: ResponsiveRule<ThemeKey<'space'> | CSSProperties['marginRight']>;
+  $mt?: ResponsiveRule<ThemeKey<'space'> | CSSProperties['marginTop']>;
+  $mx?: ResponsiveRule<ThemeKey<'space'> | CSSProperties['marginLeft']>;
+  $my?: ResponsiveRule<ThemeKey<'space'> | CSSProperties['marginTop']>;
+  $p?: ResponsiveRule<ThemeKey<'space'> | CSSProperties['padding']>;
+  $pb?: ResponsiveRule<ThemeKey<'space'> | CSSProperties['paddingBottom']>;
+  $pl?: ResponsiveRule<ThemeKey<'space'> | CSSProperties['paddingLeft']>;
+  $pr?: ResponsiveRule<ThemeKey<'space'> | CSSProperties['paddingRight']>;
+  $pt?: ResponsiveRule<ThemeKey<'space'> | CSSProperties['paddingTop']>;
+  $px?: ResponsiveRule<ThemeKey<'space'> | CSSProperties['paddingLeft']>;
+  $py?: ResponsiveRule<ThemeKey<'space'> | CSSProperties['paddingTop']>;
 }
 
 export interface BaseComponentProps {
@@ -139,12 +100,14 @@ export interface BaseComponentProps {
   style?: React.CSSProperties;
 }
 
-export type ThemeMixinProps = FlexChildProps &
-  FlexContainerProps &
-  ThemeBordersMixinProps &
-  ThemeColorsMixinProps &
-  ThemeFontsMixinProps &
-  ThemeShadowsMixinProps &
-  ThemeSizeMixinProps &
-  ThemeSpaceMixinProps &
-  BaseComponentProps;
+export interface ThemeMixinProps
+  extends BoxMixinProps,
+    BaseComponentProps,
+    FlexChildProps,
+    FlexContainerProps,
+    ThemeBordersMixinProps,
+    ThemeColorsMixinProps,
+    ThemeFontsMixinProps,
+    ThemeShadowsMixinProps,
+    ThemeSizeMixinProps,
+    ThemeSpaceMixinProps {}

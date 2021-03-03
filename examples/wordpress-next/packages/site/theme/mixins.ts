@@ -1,5 +1,5 @@
+import { get, getOr } from '@blakek/deep';
 import { css } from 'styled-components';
-import { get, getOr } from 'unchanged';
 import { media } from './breakpoints';
 
 export * from './types';
@@ -11,7 +11,7 @@ function createRuleForProp(ruleName: string, themePath: string, prop: string) {
     const propValue = get(prop, props);
 
     // Don't create any rules if no value was supplied
-    if (!propValue) return '';
+    if (propValue === undefined || propValue === null) return '';
 
     // An array means create breakpoints
     if (Array.isArray(propValue)) {
@@ -38,9 +38,14 @@ function createRuleForProp(ruleName: string, themePath: string, prop: string) {
   return createRule;
 }
 
+export const boxMixins = css`
+  ${createRuleForProp('display', '', '$display')}
+  ${createRuleForProp('position', '', '$position')}
+`;
+
 export const flexChildMixin = css`
   ${createRuleForProp('align-self', '', '$alignSelf')}
-  ${createRuleForProp('flex-basis', '', '$basis')}
+  ${createRuleForProp('flex-basis', 'theme.sizes', '$basis')}
   ${createRuleForProp('flex-grow', '', '$grow')}
   ${createRuleForProp('flex-shrink', '', '$shrink')}
   ${createRuleForProp('flex', '', '$flex')}
@@ -61,7 +66,15 @@ export const themeBordersMixin = css`
 `;
 
 export const themeColorsMixin = css`
-  ${createRuleForProp('background-color', 'theme.colors', '$bg')}
+  ${createRuleForProp('background', 'theme.colors', '$bg')}
+  ${createRuleForProp('background-attachment', '', '$bgAttachment')}
+  ${createRuleForProp('background-clip', '', '$bgClip')}
+  ${createRuleForProp('background-color', 'theme.colors', '$bgColor')}
+  ${createRuleForProp('background-image', '', '$bgImage')}
+  ${createRuleForProp('background-origin', '', '$bgOrigin')}
+  ${createRuleForProp('background-position', '', '$bgPosition')}
+  ${createRuleForProp('background-repeat', '', '$bgRepeat')}
+  ${createRuleForProp('background-size', '', '$bgSize')}
   ${createRuleForProp('color', 'theme.colors', '$color')}
 `;
 
@@ -112,6 +125,7 @@ export const themeSpaceMixin = css`
 `;
 
 export const themeMixin = css`
+  ${boxMixins}
   ${flexChildMixin}
   ${flexContainerMixin}
   ${themeBordersMixin}
