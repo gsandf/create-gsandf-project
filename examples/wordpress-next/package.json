@@ -16,16 +16,13 @@
     "prettier": "2.2.1"
   },
   "scripts": {
-    "bootstrap": "bash -c ./bootstrap.sh",
     "build": "yarn workspace @example/site build",
-    "build:image": "docker-compose build",
     "debug": "yarn workspace @example/site dev",
     "deploy": "env-cmd pm2 deploy",
     "deploy:develop": "yarn deploy develop",
     "deploy:staging": "yarn deploy staging",
     "deploy:production": "yarn deploy production",
     "dev": "WORDPRESS_URL=${WORDPRESS_URL:-'https://dev.replace_me.com'} yarn workspace @example/site dev",
-    "down": "docker-compose down",
     "exec:develop": "yarn deploy develop exec",
     "exec:production": "yarn deploy production exec",
     "exec:staging": "yarn deploy staging exec",
@@ -41,7 +38,6 @@
     "start:stage": "WORDPRESS_URL='https://stage.replace_me.com' yarn dev",
     "start:prod": "WORDPRESS_URL='https://replace_me.com' yarn dev",
     "theme:prettier": "prettier packages/wordpress-theme ./**/*.{php,js}",
-    "up": "docker-compose up --detach",
     "validate": "run-p 'theme:prettier --check' 'site validate'"
   },
   "workspaces": [
