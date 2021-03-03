@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import React from 'react';
-import signature from '../utils/signature';
 
 export interface BasicTemplateProps {
   children: JSX.Element | JSX.Element[];
@@ -18,8 +17,6 @@ function Basic({
   title
 }: BasicTemplateProps): JSX.Element {
   const metaKeywords = Array.isArray(keywords) ? keywords.join(',') : '';
-
-  signature();
 
   return (
     <>

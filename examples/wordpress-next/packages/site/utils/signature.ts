@@ -1,8 +1,4 @@
-import { isServer } from './render-environment';
-
-function signature(browserOnly = true) {
-  if (browserOnly && isServer) return;
-
+function signature() {
   const normal = 'font-size: 1.2em; font-weight: bold;';
   const red = `${normal} color: #e51b24;`;
 
