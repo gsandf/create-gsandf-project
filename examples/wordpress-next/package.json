@@ -38,6 +38,7 @@
     "start:stage": "WORDPRESS_URL='https://stage.replace_me.com' yarn dev",
     "start:prod": "WORDPRESS_URL='https://replace_me.com' yarn dev",
     "theme:prettier": "prettier packages/wordpress-theme ./**/*.{php,js}",
+    "typeCheck": "yarn site typeCheck",
     "validate": "run-p 'theme:prettier --check' 'site validate'"
   },
   "workspaces": [
