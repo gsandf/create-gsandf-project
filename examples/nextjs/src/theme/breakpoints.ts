@@ -42,6 +42,6 @@ export const media = {
     md: createMinWidthQuery(breakpoints.md),
     lg: createMinWidthQuery(breakpoints.lg),
     xl: createMinWidthQuery(breakpoints.xl),
-    xxl: createMaxWidthQuery(breakpoints.xxl)
+    xxl: createMinWidthQuery(breakpoints.xxl)
   }
 };

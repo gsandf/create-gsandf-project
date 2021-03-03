@@ -6,7 +6,7 @@ import { Box, Container, Flex, Text } from '../components/common';
 import BasicLayout from '../templates/Basic';
 
 const Card = styled.a`
-  border-color: ${p => p.theme.colors.lightGrey};
+  border-color: ${p => p.theme.colors.gray700};
   border-radius: ${p => p.theme.radii.md};
   border-style: solid;
   border-width: 1px;
@@ -15,13 +15,14 @@ const Card = styled.a`
   margin: ${p => p.theme.space[3]};
   padding: ${p => p.theme.space[3]};
   text-decoration: none;
-  transition: color 150ms ease, border-color 150ms ease;
+  transition: all 250ms ease;
 
   :hover,
   :focus,
   :active {
-    color: ${p => p.theme.colors.accent};
+    background-color: ${p => p.theme.colors.accent};
     border-color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.onAccent};
   }
 
   ${p =>
@@ -31,10 +32,10 @@ const Card = styled.a`
 `;
 
 const Header = styled.h1`
-  background-color: ${p => p.theme.colors.secondary};
-  box-shadow: 0.5em 0 0 ${p => p.theme.colors.secondary},
-    -0.5em 0 0 ${p => p.theme.colors.secondary};
-  color: ${p => p.theme.colors.onSecondary};
+  background-color: ${p => p.theme.colors.accent};
+  box-shadow: 0.5em 0 0 ${p => p.theme.colors.accent},
+    -0.5em 0 0 ${p => p.theme.colors.accent};
+  color: ${p => p.theme.colors.onAccent};
   display: inline;
   text-transform: uppercase;
   ${p => p.theme.mixins.themeMixin}
@@ -61,8 +62,8 @@ export default function Home(): JSX.Element {
       <Container $px={2} $py={4}>
         <p>
           Next.js will serve each file in <code>/pages</code> under a pathname
-          matching the filename. For example, <code>/pages/about.tsx</code> is
-          served at{' '}
+          matching the filename. For example making a file at{' '}
+          <code>/pages/about.tsx</code> would be served at{' '}
           <Link href="/about">
             <a>localhost:3000/about</a>
           </Link>

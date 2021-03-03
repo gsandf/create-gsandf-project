@@ -1,4 +1,4 @@
-import { normalize, transparentize } from 'polished';
+import { normalize } from 'polished';
 import {
   createGlobalStyle,
   DefaultTheme,
@@ -9,49 +9,49 @@ import { anchorStyles, buttonStyles } from './component-styles';
 import * as mixins from './mixins';
 
 const palette = {
-  backgroundOrange: '#f26825',
-  backgroundRed: '#eb3c35',
-  black: '#111111',
-  blueGrey: '#485660',
-  darkGrey: '#727272',
-  gold: '#edb026',
-  grey: '#505050',
-  lightGrey: '#dcdcdc',
-  midGrey: '#ababab',
-  offWhite: '#f8f8f8',
-  orange: '#e15f2c',
-  red: '#e51b24',
-  softBlack: '#242424',
-  softGrey: '#f3f3f3',
+  red: '#e45b66',
+  tan: '#e2c58c',
   transparent: 'transparent',
   white: '#ffffff',
-  yellow: '#e5ad2f'
+  gray100: '#050000',
+  gray200: '#0a0808',
+  gray300: '#404040',
+  gray400: '#646464',
+  gray500: '#8e8e8e',
+  gray600: '#aeaeae',
+  gray700: '#d6d6d6',
+  gray800: '#ebebeb',
+  gray900: '#f2f2f2'
 };
 
 export const colors = {
   ...palette,
-  primary: palette.red,
+  primary: palette.gray200,
   onPrimary: palette.white,
-  secondary: palette.blueGrey,
-  onSecondary: palette.white,
-  accent: palette.yellow,
-  onAccent: palette.softBlack,
+  accent: palette.tan,
+  onAccent: palette.gray200,
   background: palette.white,
-  dark: palette.blueGrey,
+  dark: palette.gray300,
   onDark: palette.white,
-  darken: palette.offWhite,
-  textDark: palette.darkGrey,
+  darken: palette.gray800,
+  onDarken: palette.gray100,
+  textDark: palette.gray200,
+  textDarker: palette.gray100,
   textLight: palette.white
 };
 
 export const borders = {
+  card: `1px solid ${colors.gray800}`,
+  control: `1px solid ${colors.gray700}`,
+  controlActive: `2px solid ${colors.primary}`,
   thick: `8px solid ${colors.dark}`
 };
 
 export const fonts = {
   body:
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-  heading: 'inherit',
+  heading:
+    'Roboto Condensed, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
   monospace: 'IBM Plex Mono, Menlo, monospace'
 };
 
@@ -69,9 +69,9 @@ export const fontSizes = [
 
 export const fontWeights = {
   body: 400,
-  button: 900,
+  button: 700,
   heading: 700,
-  display: 900
+  display: 700
 };
 
 export const lineHeights = {
@@ -82,8 +82,8 @@ export const lineHeights = {
 
 export const radii = {
   none: '0',
-  sm: '2px',
-  md: '6px'
+  sm: '4px',
+  md: '8px'
 };
 
 export const sizes = {
@@ -137,21 +137,11 @@ export const space = [
 ];
 
 export const shadows = {
-  accentN: `0 -${space[4]} 0 0 ${colors.accent}`,
-  accentS: `0 ${space[4]} 0 0 ${colors.accent}`,
-  accentE: `${space[4]} 0 0 0 ${colors.accent}`,
-  accentW: `-${space[4]} 0 0 0 ${colors.accent}`,
-  accentNE: `${space[4]} -${space[4]} 0 0 ${colors.accent}`,
-  accentNW: `-${space[4]} -${space[4]} 0 0 ${colors.accent}`,
-  accentSE: `${space[4]} ${space[4]} 0 0 ${colors.accent}`,
-  accentSW: `-${space[4]} ${space[4]} 0 0 ${colors.accent}`,
-  default: '0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.1)',
-  md: '4px 4px 8px 0 rgba(0, 0, 0, 0.2)',
-  lg: '0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
-  nav: `0 4px 10px 0 rgba(1, 0, 0, 0.07)`,
-  inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
-  outline: `0 0 0 3px ${colors.accent}`,
-  none: 'none'
+  default: `0 2px 10px 0 rgba(0,0,0,0.13);`,
+  nav: `0 1px 0 0 ${colors.gray800}`,
+  none: 'none',
+  outline: `0 0 0 2px ${colors.primary}`,
+  thinOutline: `0 0 0 1px ${colors.gray700}`
 };
 
 export const textStyles = {
@@ -168,6 +158,13 @@ export const textStyles = {
   }
 };
 
+export const zIndices = {
+  lower: -1,
+  higher: 1,
+  dialog: 100,
+  menu: 90
+};
+
 export const styles: GlobalStyleComponent<
   unknown,
   DefaultTheme
@@ -180,7 +177,7 @@ export const styles: GlobalStyleComponent<
 
   html {
     box-sizing: border-box;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   body {
@@ -193,13 +190,6 @@ export const styles: GlobalStyleComponent<
 
   p a:not([class]) {
     ${anchorStyles}
-  }
-
-  code:not([class]) {
-    background-color: ${colors.softGrey};
-    border-radius: ${radii.md};
-    color: ${transparentize(0.35, colors.primary)};
-    padding: 0.1em 0.2em;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -227,6 +217,27 @@ export const styles: GlobalStyleComponent<
     font-size: ${fontSizes[3]};
   }
 
+  label:not([class]){
+    padding-bottom: ${space[2]};
+  }
+
+  input:not([class]) {
+    border: ${borders.control};
+    border-radius: ${radii.sm};
+    display: block;
+    outline: none;
+    padding-bottom: ${space[2]};
+    padding-left: ${space[3]};
+    padding-right: ${space[3]};
+    padding-top: ${space[2]};
+    width: 100%;
+
+    :focus {
+      border-color: transparent;
+      box-shadow: ${shadows.outline};
+    }
+  }
+
   code, pre {
     font-family: ${fonts.monospace};
   }
@@ -239,6 +250,7 @@ export const components: any = {
 export { breakpoints, media, mixins };
 
 export default {
+  borders,
   breakpoints,
   colors,
   components,
@@ -253,5 +265,6 @@ export default {
   sizes,
   space,
   styles,
-  textStyles
+  textStyles,
+  zIndices
 };
