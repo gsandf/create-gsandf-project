@@ -4,7 +4,7 @@ import Nav from '../components/Nav';
 import { absoluteURL } from '../lib/absolute-url';
 
 export interface BasicTemplateProps {
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
   keywords?: string[];
   metaDescription?: string;
   socialMediaImage?: string;

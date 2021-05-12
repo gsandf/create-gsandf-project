@@ -2,7 +2,7 @@ import Head from 'next/head';
 import React from 'react';
 
 export interface BasicTemplateProps {
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
   keywords?: string[];
   metaDescription?: string;
   socialMediaImage?: string;
