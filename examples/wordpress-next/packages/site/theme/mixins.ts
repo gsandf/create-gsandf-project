@@ -19,7 +19,14 @@ function createRuleForProp(ruleName: string, themePath: string, prop: string) {
 
       const breakpointStyles = otherStyles
         .map(style => createRule({ ...props, [prop]: style }))
-        .flatMap((styles, index) => mediaQueries[index]([styles]))
+        .flatMap(
+          (styles, index) =>
+            css`
+              ${mediaQueries[index]} {
+                ${styles}
+              }
+            `
+        )
         .join('');
 
       return `

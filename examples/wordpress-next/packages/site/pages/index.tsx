@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Box, Container, Flex, Text } from '../components/common';
 import BasicLayout from '../templates/Basic';
 
@@ -24,10 +24,9 @@ const Card = styled.a`
     color: ${p => p.theme.colors.onAccent};
   }
 
-  ${p =>
-    p.theme.media.up.sm(css`
-      flex-basis: 45%;
-    `)}
+  ${p => p.theme.media.upSm} {
+    flex-basis: 45%;
+  }
 `;
 
 const Header = styled.h1`

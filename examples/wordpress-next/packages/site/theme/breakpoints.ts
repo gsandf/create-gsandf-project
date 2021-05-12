@@ -1,47 +1,30 @@
-import { getValueAndUnit } from 'polished';
-import { css, CSSProp } from 'styled-components';
-
 export const breakpoints = {
-  sm: '480px',
-  md: '768px',
-  lg: '992px',
-  xl: '1200px',
-  xxl: '1440px'
+  sm: 480,
+  md: 768,
+  lg: 992,
+  xl: 1200,
+  xxl: 1440
 };
 
-export const createMinWidthQuery: any = (width: string) => (
-  styles: CSSProp
-) => css`
-  @media (min-width: ${width}) {
-    ${styles}
-  }
-`;
+const createMaxWidthQuery = (maxWidth: number, shouldSubtract = true) =>
+  `@media (max-width: ${shouldSubtract ? maxWidth - 1 : maxWidth}px)`;
 
-export const createMaxWidthQuery: any = (width: string) => (
-  styles: CSSProp
-) => {
-  const [value, unit] = getValueAndUnit(width);
-
-  return css`
-    @media (max-width: ${value - 1}${unit}) {
-      ${styles}
-    }
-  `;
-};
+const createMinWidthQuery = (minWidth: number) =>
+  `@media (min-width: ${minWidth}px)`;
 
 export const media = {
-  down: {
-    sm: createMaxWidthQuery(breakpoints.sm),
-    md: createMaxWidthQuery(breakpoints.md),
-    lg: createMaxWidthQuery(breakpoints.lg),
-    xl: createMaxWidthQuery(breakpoints.xl),
-    xxl: createMaxWidthQuery(breakpoints.xxl)
-  },
-  up: {
-    sm: createMinWidthQuery(breakpoints.sm),
-    md: createMinWidthQuery(breakpoints.md),
-    lg: createMinWidthQuery(breakpoints.lg),
-    xl: createMinWidthQuery(breakpoints.xl),
-    xxl: createMinWidthQuery(breakpoints.xxl)
-  }
+  down: (n: number) => createMaxWidthQuery(n, false),
+  up: createMinWidthQuery,
+
+  downSm: createMaxWidthQuery(breakpoints.sm),
+  downMd: createMaxWidthQuery(breakpoints.md),
+  downLg: createMaxWidthQuery(breakpoints.lg),
+  downXl: createMaxWidthQuery(breakpoints.xl),
+  downXxl: createMaxWidthQuery(breakpoints.xxl),
+
+  upSm: createMinWidthQuery(breakpoints.sm),
+  upMd: createMinWidthQuery(breakpoints.md),
+  upLg: createMinWidthQuery(breakpoints.lg),
+  upXl: createMinWidthQuery(breakpoints.xl),
+  upXxl: createMinWidthQuery(breakpoints.xxl)
 };

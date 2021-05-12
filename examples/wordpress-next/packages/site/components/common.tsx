@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { media, textStyles } from '../theme';
 import { ThemeMixinProps } from '../theme/mixins';
 
@@ -34,14 +34,14 @@ export const Inner = styled.div<ThemeMixinProps & { $maxWidth?: string }>`
   padding: 0 20px;
   ${p => p.theme.mixins.themeMixin}
 
-  ${media.up.md(css`
+  ${media.upMd} {
     padding: 0 ${p => p.theme.space[4]};
-  `)}
+  }
 
-  ${media.up.xl(css`
+  ${media.upXl} {
     padding: ${p => p.theme.space[5]} 0;
     max-width: ${p => p.theme.breakpoints.xl};
-  `)}
+  }
 `;
 
 export const Text = styled.span<

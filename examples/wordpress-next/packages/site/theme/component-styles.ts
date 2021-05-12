@@ -62,11 +62,10 @@ export const buttonStyles = css<{ variant?: ButtonVariant }>`
         color: ${p => p.theme.colors.onDarken};
       }
 
-      ${p =>
-        p.theme.media.up.sm(css`
-          font-size: 1em;
-          padding: 0.625em 1em;
-        `)}
+      ${p => p.theme.media.upSm} {
+        font-size: 1em;
+        padding: 0.625em 1em;
+      }
     `}
 
   ${p =>
