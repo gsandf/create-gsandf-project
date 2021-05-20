@@ -6,21 +6,21 @@ export const breakpoints = {
   xxl: 1440
 };
 
-const createMaxWidthQuery = (maxWidth: number, shouldSubtract = true) =>
-  `@media (max-width: ${shouldSubtract ? maxWidth - 1 : maxWidth}px)`;
+const createMaxWidthQuery = (maxWidth: number) =>
+  `@media (max-width: ${maxWidth}px)`;
 
 const createMinWidthQuery = (minWidth: number) =>
   `@media (min-width: ${minWidth}px)`;
 
 export const media = {
-  down: (n: number) => createMaxWidthQuery(n, false),
-  up: createMinWidthQuery,
+  customDown: createMaxWidthQuery,
+  customUp: createMinWidthQuery,
 
-  downSm: createMaxWidthQuery(breakpoints.sm),
-  downMd: createMaxWidthQuery(breakpoints.md),
-  downLg: createMaxWidthQuery(breakpoints.lg),
-  downXl: createMaxWidthQuery(breakpoints.xl),
-  downXxl: createMaxWidthQuery(breakpoints.xxl),
+  downSm: createMaxWidthQuery(breakpoints.sm - 1),
+  downMd: createMaxWidthQuery(breakpoints.md - 1),
+  downLg: createMaxWidthQuery(breakpoints.lg - 1),
+  downXl: createMaxWidthQuery(breakpoints.xl - 1),
+  downXxl: createMaxWidthQuery(breakpoints.xxl - 1),
 
   upSm: createMinWidthQuery(breakpoints.sm),
   upMd: createMinWidthQuery(breakpoints.md),
