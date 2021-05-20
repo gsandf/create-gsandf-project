@@ -13,18 +13,21 @@ const createMinWidthQuery = (minWidth: number) =>
   `@media (min-width: ${minWidth}px)`;
 
 export const media = {
-  customDown: createMaxWidthQuery,
-  customUp: createMinWidthQuery,
+  down: {
+    from: createMaxWidthQuery,
+    sm: createMaxWidthQuery(breakpoints.sm - 1),
+    md: createMaxWidthQuery(breakpoints.md - 1),
+    lg: createMaxWidthQuery(breakpoints.lg - 1),
+    xl: createMaxWidthQuery(breakpoints.xl - 1),
+    xxl: createMaxWidthQuery(breakpoints.xxl - 1)
+  },
 
-  downSm: createMaxWidthQuery(breakpoints.sm - 1),
-  downMd: createMaxWidthQuery(breakpoints.md - 1),
-  downLg: createMaxWidthQuery(breakpoints.lg - 1),
-  downXl: createMaxWidthQuery(breakpoints.xl - 1),
-  downXxl: createMaxWidthQuery(breakpoints.xxl - 1),
-
-  upSm: createMinWidthQuery(breakpoints.sm),
-  upMd: createMinWidthQuery(breakpoints.md),
-  upLg: createMinWidthQuery(breakpoints.lg),
-  upXl: createMinWidthQuery(breakpoints.xl),
-  upXxl: createMinWidthQuery(breakpoints.xxl)
+  up: {
+    from: createMinWidthQuery,
+    sm: createMinWidthQuery(breakpoints.sm),
+    md: createMinWidthQuery(breakpoints.md),
+    lg: createMinWidthQuery(breakpoints.lg),
+    xl: createMinWidthQuery(breakpoints.xl),
+    xxl: createMinWidthQuery(breakpoints.xxl)
+  }
 };

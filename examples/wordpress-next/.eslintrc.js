@@ -8,6 +8,7 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   root: true,
   rules: {
+    'no-sparse-arrays': 'off',
     // Turn off rules that TypeScript ESLint handles
     'no-use-before-define': 'off',
     'no-unused-vars': 'off',

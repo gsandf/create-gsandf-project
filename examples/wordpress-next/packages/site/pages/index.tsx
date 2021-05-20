@@ -24,7 +24,7 @@ const Card = styled.a`
     color: ${p => p.theme.colors.onAccent};
   }
 
-  ${p => p.theme.media.upSm} {
+  ${p => p.theme.media.up.sm} {
     flex-basis: 45%;
   }
 `;

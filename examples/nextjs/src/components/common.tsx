@@ -33,11 +33,11 @@ export const Inner = styled.div<ThemeMixinProps & { $maxWidth?: string }>`
   max-width: ${p => p.$maxWidth ?? p.theme.breakpoints.xl};
   padding: 0 20px;
 
-  ${media.upMd} {
+  ${media.up.md} {
     padding: 0 ${p => p.theme.space[4]};
   }
 
-  ${media.upXl} {
+  ${media.up.xl} {
     padding: ${p => p.theme.space[5]} 0;
     max-width: ${p => p.theme.breakpoints.xl};
   }

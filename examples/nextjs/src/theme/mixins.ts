@@ -1,13 +1,13 @@
 import { get, getOr } from '@blakek/deep';
-import { css } from 'styled-components';
+import { css, CSSProp } from 'styled-components';
 import { media } from './breakpoints';
 
 export * from './types';
 
-const mediaQueries = Object.values(media.up);
+const mediaQueries = Object.values(media.up).slice(1) as string[];
 
 function createRuleForProp(ruleName: string, themePath: string, prop: string) {
-  function createRule(props: any): string {
+  function createRule(props: any): CSSProp {
     const propValue = get(prop, props);
 
     // Don't create any rules if no value was supplied
@@ -17,19 +17,19 @@ function createRuleForProp(ruleName: string, themePath: string, prop: string) {
     if (Array.isArray(propValue)) {
       const [defaultStyle, ...otherStyles] = propValue;
 
-      const breakpointStyles = otherStyles
-        .map(style => createRule({ ...props, [prop]: style }))
-        .flatMap(
-          (styles, index) =>
-            css`
-              ${mediaQueries[index]} {
-                ${styles}
-              }
-            `
-        )
-        .join('');
+      const breakpointStyles = otherStyles.flatMap((style, index) => {
+        const styles = createRule({ ...props, [prop]: style });
 
-      return `
+        if (!styles) return [];
+
+        return css`
+          ${mediaQueries[index]} {
+            ${styles}
+          }
+        `;
+      });
+
+      return css`
         ${createRule({ ...props, [prop]: defaultStyle })}
         ${breakpointStyles}
       `;
