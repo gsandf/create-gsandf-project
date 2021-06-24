@@ -20,15 +20,15 @@
     ]
   },
   "devDependencies": {
-    "@prettier/plugin-php": "^0.16.1",
-    "@typescript-eslint/eslint-plugin": "^4.16.1",
-    "@typescript-eslint/parser": "^4.16.1",
+    "@prettier/plugin-php": "^0.17.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
     "amper-scripts": "^1.0.0",
     "env-cmd": "^10.1.0",
-    "eslint": "^7.21.0",
+    "eslint": "^7.29.0",
     "npm-run-all": "^4.1.5",
-    "pm2": "^4.5.5",
-    "prettier": "2.2.1"
+    "pm2": "^5.1.0",
+    "prettier": "^2.3.1"
   },
   "scripts": {
     "build": "yarn workspace @example/site build",
@@ -38,6 +38,7 @@
     "deploy:staging": "yarn deploy staging",
     "deploy:production": "yarn deploy production",
     "dev": "WORDPRESS_URL=${WORDPRESS_URL:-'https://dev.replace_me.com'} yarn workspace @example/site dev",
+    "dev:frontend": "WORDPRESS_URL=${WORDPRESS_URL:-'https://dev.replace_me.com'} yarn workspace @example/site dev",
     "exec:develop": "yarn deploy develop exec",
     "exec:production": "yarn deploy production exec",
     "exec:staging": "yarn deploy staging exec",
@@ -48,16 +49,17 @@
     "serve": "next start packages/site/",
     "site": "yarn workspace @example/site",
     "start": "yarn start:dev",
-    "start:dev": "WORDPRESS_URL='https://dev.replace_me.com' yarn dev",
-    "start:local": "run-p 'up' 'dev'",
-    "start:stage": "WORDPRESS_URL='https://stage.replace_me.com' yarn dev",
-    "start:prod": "WORDPRESS_URL='https://replace_me.com' yarn dev",
+    "start:dev": "WORDPRESS_URL='https://dev.replace_me.com' yarn dev:frontend",
+    "start:stage": "WORDPRESS_URL='https://stage.replace_me.com' yarn dev:frontend",
+    "start:prod": "WORDPRESS_URL='https://replace_me.com' yarn dev:frontend",
     "test": "run-p 'site test'",
     "theme:prettier": "prettier packages/wordpress-theme ./**/*.{php,js}",
     "typeCheck": "yarn site typeCheck",
     "validate": "run-p 'theme:prettier --check' 'site validate'"
   },
-  "workspaces": [
-    "packages/*"
-  ]
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  }
 }
