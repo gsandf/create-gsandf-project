@@ -214,10 +214,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@gsandf/ui@^0.0.1-14":
-  version "0.0.1-14"
-  resolved "https://registry.yarnpkg.com/@gsandf/ui/-/ui-0.0.1-14.tgz#6f279c4b529968c7ae75ad86b8225787603721be"
-  integrity sha512-vJpMAii89Vc8eEwq6fJGuLCNnMTg8AMyQHRfdkJqpWNVU9AWgzj7zuGDT2C8U3vgCzumB/QUB0w3ZiPdnFRvYg==
+"@gsandf/ui@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gsandf/ui/-/ui-0.1.0.tgz#cf2a8395e0c8a1b24a43baeb44f9ce4b56060bee"
+  integrity sha512-Uz/IkF9AwSWE0Gb0dFdfCBDUJtrinQJo62bL8eWw2oKWkWX9yE0PG2yJYUt8NUpf1hL1pB+qyeM60Fgg29UPmw==
   dependencies:
     "@blakek/array-split" "^2.0.1"
     "@blakek/deep" "^2.2.0"
