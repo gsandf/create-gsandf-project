@@ -20,25 +20,26 @@
     ]
   },
   "dependencies": {
-    "@blakek/deep": "^2.1.1",
-    "next": "10.0.4",
-    "polished": "^4.0.5",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "styled-components": "^5.2.1"
+    "@blakek/deep": "^2.2.0",
+    "@gsandf/ui": "^0.0.1-14",
+    "next": "^11.0.1",
+    "polished": "^4.1.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "styled-components": "^5.3.0"
   },
   "devDependencies": {
-    "@types/node": "^14.14.19",
-    "@types/react": "^17.0.0",
-    "@types/styled-components": "^5.1.7",
-    "@typescript-eslint/eslint-plugin": "^4.11.1",
-    "@typescript-eslint/parser": "^4.11.1",
+    "@types/node": "^15.12.4",
+    "@types/react": "^17.0.11",
+    "@types/styled-components": "^5.1.10",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
     "amper-scripts": "^1.0.0-1",
     "ava": "^3.15.0",
     "babel-plugin-styled-components": "^1.12.0",
     "npm-run-all": "^4.1.5",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.1.3"
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.4"
   },
   "engines": {
     "node": "14.x"

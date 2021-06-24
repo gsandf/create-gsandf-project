@@ -2,15 +2,19 @@
 
 > A small layer on top of Next.js for fast hacking
 
-This is meant as a base for any website built with React and Styled Components,
-including:
+This is meant as a base for websites built with React and Styled Components, including:
 
+- most stand-alone sites
 - quick prototypes
 - static generated sites (handled using Next.js)
-- sites with API (using Next.js API routes)
+- sites needing a simple API (using Next.js API routes)
 - …and more!
 
-If you're planning on using WordPress, see the [wordpress-next] starter.
+It may be better to use a different project for some situations - see the [main readme] for options:
+
+- projects embedded within a page on a site (e.g. using a script tag)
+- sites heavily tied to a CMS
+  - A CMS's API can be used (e.g. using API routes), but we're working on more robust projects that build on this one that are more oriented toward CMS-driven sites
 
 ## How to Use
 
@@ -54,14 +58,16 @@ See below for other scripts.
 
 For more of a deep dive, see the docs for the projects this one depends on:
 
+- [@gsandf/ui] - common components, hooks, theming, and other helpers
 - [Next.js] - the framework handling server-side rendering and routing
 
 ## License
 
 UNLICENSED
 
+[@gsandf/ui]: https://github.com/gsandf/ui
+[main readme]: https://github.com/gsandf/create-gsandf-project/tree/master
 [next.js]: https://nextjs.org/
 [node.js]: https://nodejs.org/
 [prettier]: https://prettier.io/
-[wordpress-next]: https://github.com/gsandf/create-gsandf-project/tree/master/examples/wordpress-next
-[yarn]: https://yarnpkg.com/en/docs/
+[yarn]: https://yarnpkg.com/en/docs
