@@ -17,8 +17,8 @@ interface GraphQLError {
   source?: any;
 }
 
-type GraphQLErrorResponse = { errors: GraphQLError[] };
-type GraphQLSuccessResponse<Data> = { data: Data };
+export type GraphQLErrorResponse = { errors: GraphQLError[] };
+export type GraphQLSuccessResponse<Data = any> = { data: Data };
 
 export type GraphQLResponse<Data = any> =
   | GraphQLErrorResponse

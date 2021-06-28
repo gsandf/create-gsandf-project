@@ -1,15 +1,15 @@
+import { Box, Button, Flex, Text } from '@gsandf/ui';
 import { NextPageContext } from 'next';
 import Link from 'next/link';
 import React from 'react';
-import { Box, Button, Flex, Text } from '../components/common';
 import BasicLayout from '../templates/Basic';
 
-const statusCodes: { [code: number]: string } = {
+const statusCodes = {
   400: 'Bad Request',
   404: 'This page could not be found',
   405: 'Method Not Allowed',
   500: 'Internal Server Error'
-};
+} as const;
 
 function Error({ statusCode }: ErrorProps) {
   const reasonText =
@@ -18,7 +18,7 @@ function Error({ statusCode }: ErrorProps) {
   return (
     <BasicLayout
       metaDescription=""
-      title={`Starter Theme | ${statusCode} Error - ${reasonText}`}
+      title={`${statusCode} Error - ${reasonText}`}
     >
       <Flex
         $alignItems="center"

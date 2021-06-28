@@ -3,7 +3,7 @@ import { transparentize } from 'polished';
 import React from 'react';
 import styled from 'styled-components';
 
-// TODO: replace with navigation routes from site
+// TODO: replace with navigation routes from site.
 const routes = [
   { displayName: 'Home', path: '/' },
   { displayName: 'About', path: '/about' },
@@ -51,11 +51,12 @@ const Spacer = styled.div`
 const StyledNavLink = styled.a`
   color: ${p => p.theme.colors.textLight};
   cursor: pointer;
+  padding-bottom: ${p => p.theme.space[2]};
   text-decoration: none;
-  transition: color 200ms ease-out;
+  transition: all 200ms ease-out;
 
   &:hover {
-    color: ${p => p.theme.colors.primary};
+    box-shadow: 0 2px 0 0 ${p => p.theme.colors.textLight};
   }
 `;
 
@@ -66,7 +67,7 @@ function NavItems() {
         .filter(route => route.displayName)
         .map(route => (
           <NavItem key={route.path}>
-            <Link href={route.path}>
+            <Link href={route.path} passHref>
               <StyledNavLink>{route.displayName}</StyledNavLink>
             </Link>
           </NavItem>

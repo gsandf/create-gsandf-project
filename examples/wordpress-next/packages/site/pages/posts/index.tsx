@@ -1,53 +1,61 @@
+import { BasicGrid, Box, Container, Text } from '@gsandf/ui';
+import { InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import React from 'react';
-import { apiFetch, GraphQLResponse } from '../../api';
-import { Box, Container } from '../../components/common';
-import { PostBox, PostList } from '../../components/Posts/components';
+import { apiFetch } from '../../api';
+import { PostBox } from '../../components/Posts/components';
 import BasicTemplate from '../../templates/Basic';
 
-interface PostProps extends GraphQLResponse {
-  data: {
-    posts: {
-      nodes: {
-        slug: string;
-        title: string;
-        featuredImage?: {
-          sourceUrl: string;
-        };
-      }[];
-    };
+interface PostProps {
+  posts: {
+    nodes: {
+      slug: string;
+      title: string;
+      featuredImage?: {
+        node: { sourceUrl: string };
+      };
+    }[];
   };
 }
 
-function Posts({ data }: PostProps) {
+type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
+
+function Posts({ data }: Props) {
   return (
     <BasicTemplate>
-      <Box as="header" $bgColor="accent" $color="onAccent" $p={6}>
-        <h1>Posts</h1>
+      <Box as="header" $bgColor="primary" $color="onPrimary" $py={28}>
+        <Container $px={4}>
+          <h1>Posts</h1>
+        </Container>
       </Box>
 
-      <Container>
-        <PostList>
+      <Container $py={16}>
+        <BasicGrid columns={[1, , 2, 3]} spacing={[4, , 6]}>
           {data.posts.nodes.map(({ featuredImage, slug, title }) => (
-            <PostBox
-              background={featuredImage?.sourceUrl ?? ''}
-              $bgColor="dark"
-              $color="onDark"
-              key={slug}
-            >
-              <Link href={`/posts/${slug}`}>
-                <a dangerouslySetInnerHTML={{ __html: title }} />
-              </Link>
-            </PostBox>
+            <Link href={`/posts/${slug}`} key={slug}>
+              <PostBox
+                background={featuredImage?.node.sourceUrl ?? ''}
+                $bgColor="dark"
+                $color="onDark"
+                $p={8}
+              >
+                <Text
+                  dangerouslySetInnerHTML={{ __html: title }}
+                  maxLineCount={2}
+                  $fontSize={5}
+                  $fontWeight="bold"
+                />
+              </PostBox>
+            </Link>
           ))}
-        </PostList>
+        </BasicGrid>
       </Container>
     </BasicTemplate>
   );
 }
 
 export async function getServerSideProps() {
-  const props = await apiFetch({
+  const props = await apiFetch<PostProps>({
     query: /* GraphQL */ `
       query getPosts {
         posts {
@@ -55,7 +63,9 @@ export async function getServerSideProps() {
             slug
             title
             featuredImage {
-              sourceUrl(size: MEDIUM)
+              node {
+                sourceUrl(size: MEDIUM)
+              }
             }
           }
         }
