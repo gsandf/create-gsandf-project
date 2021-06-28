@@ -1,9 +1,9 @@
 import { Box, Container, Text, VStack } from '@gsandf/ui';
 import * as datefns from 'date-fns';
-import { fetchPostWithSlug } from 'lib/api';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import React from 'react';
 import styled from 'styled-components';
+import { fetchPostWithSlug } from '../../lib/api';
 import BasicTemplate from '../../templates/Basic';
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;

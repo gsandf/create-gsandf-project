@@ -3,24 +3,24 @@ import { absoluteURL } from './lib/absolute-url';
 
 export interface GraphQLQuery {
   query: string;
-  variables?: any;
+  variables?: Record<string, unknown>;
 }
 
 interface GraphQLError {
   message: string;
-  extensions?: any;
-  locations?: any;
-  nodes?: any;
-  originalError?: any;
-  path?: any;
-  positions?: any;
-  source?: any;
+  extensions?: unknown;
+  locations?: unknown;
+  nodes?: unknown;
+  originalError?: unknown;
+  path?: unknown;
+  positions?: unknown;
+  source?: unknown;
 }
 
 export type GraphQLErrorResponse = { errors: GraphQLError[] };
-export type GraphQLSuccessResponse<Data = any> = { data: Data };
+export type GraphQLSuccessResponse<Data = unknown> = { data: Data };
 
-export type GraphQLResponse<Data = any> =
+export type GraphQLResponse<Data = unknown> =
   | GraphQLErrorResponse
   | GraphQLSuccessResponse<Data>;
 
@@ -42,7 +42,7 @@ export const hasErrors = (
 ): response is GraphQLErrorResponse =>
   'errors' in response && response.errors !== undefined;
 
-export async function apiFetch<Data = any>({
+export async function apiFetch<Data = unknown>({
   query,
   variables
 }: GraphQLQuery): Promise<GraphQLSuccessResponse<Data>> {

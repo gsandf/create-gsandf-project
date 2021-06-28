@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@blakek/deep": "^2.2.0",
-    "@gsandf/ui": "^0.1.0",
+    "@gsandf/ui": "^0.1.1",
     "next": "^11.0.1",
     "polished": "^4.1.3",
     "react": "17.0.2",
@@ -29,14 +29,13 @@
     "styled-components": "^5.3.0"
   },
   "devDependencies": {
-    "@types/node": "^15.12.4",
+    "@types/node": "^15.12.5",
     "@types/react": "^17.0.11",
     "@types/styled-components": "^5.1.10",
-    "@typescript-eslint/eslint-plugin": "^4.28.0",
-    "@typescript-eslint/parser": "^4.28.0",
-    "amper-scripts": "^1.0.0-1",
+    "amper-scripts": "^1.1.0",
     "ava": "^3.15.0",
     "babel-plugin-styled-components": "^1.12.0",
+    "eslint-config-gsandf-typescript": "^1.0.2",
     "npm-run-all": "^4.1.5",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.4"
@@ -49,7 +48,7 @@
     "dev": "next dev",
     "format-check": "amper-scripts format-check '*.{js,ts,tsx}' 'src/**/*.{js,ts,tsx}'",
     "format": "amper-scripts format-write '*.{js,ts,tsx}' 'src/**/*.{js,ts,tsx}'",
-    "lint": "amper-scripts lint --config ./.eslintrc.js '*.{js,ts,tsx}' 'src/**/*.{js,ts,tsx}'",
+    "lint": "amper-scripts lint '*.{js,ts,tsx}' 'src/**/*.{js,ts,tsx}'",
     "start": "next start",
     "test": "ava",
     "typeCheck": "tsc --noEmit",
