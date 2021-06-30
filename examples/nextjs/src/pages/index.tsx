@@ -11,7 +11,7 @@ export default function Home(): JSX.Element {
       metaDescription="Welcome to a hackable site starter"
       title="GS&amp;F Site Starter | Home"
     >
-      <Flex as="header" $justifyContent="center" $bg="darken" $py={40}>
+      <Flex as="header" $justifyContent="center" $bgColor="darken" $py={40}>
         <Box $px={[4, 5]} $maxWidth={['full', '600px']}>
           <Header>Welcome to a hackable site starter</Header>
         </Box>
