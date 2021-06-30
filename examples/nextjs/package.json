@@ -46,9 +46,9 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "format-check": "amper-scripts format-check '*.{js,ts,tsx}' 'src/**/*.{js,ts,tsx}'",
-    "format": "amper-scripts format-write '*.{js,ts,tsx}' 'src/**/*.{js,ts,tsx}'",
-    "lint": "amper-scripts lint '*.{js,ts,tsx}' 'src/**/*.{js,ts,tsx}'",
+    "format-check": "amper-scripts format-check .",
+    "format": "amper-scripts format-write .",
+    "lint": "amper-scripts lint .",
     "start": "next start",
     "test": "ava",
     "typeCheck": "tsc --noEmit",
