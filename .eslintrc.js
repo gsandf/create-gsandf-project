@@ -1,7 +1,3 @@
 module.exports = {
-  extends: ['gsandf', 'prettier'],
-  parser: 'babel-eslint',
-  rules: {
-    'react/prop-types': 'off'
-  }
+  extends: [require.resolve('amper-scripts/config/eslint')]
 };

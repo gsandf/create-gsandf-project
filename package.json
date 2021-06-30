@@ -14,8 +14,7 @@
     "tar": "^6.1.0"
   },
   "devDependencies": {
-    "amper-scripts": "^1.0.0",
-    "eslint-config-gsandf-typescript": "^1.0.2",
+    "amper-scripts": "^1.2.3",
     "npm-run-all": "^4.1.5",
     "prettier": "2.3.2"
   },
