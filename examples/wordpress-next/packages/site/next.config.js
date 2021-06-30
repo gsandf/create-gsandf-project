@@ -12,6 +12,10 @@ async function redirects() {
 }
 
 module.exports = {
+  images: {
+    // Add domains that are allowed to host images here
+    domains: []
+  },
   reactStrictMode: true,
   redirects,
   target: 'server',

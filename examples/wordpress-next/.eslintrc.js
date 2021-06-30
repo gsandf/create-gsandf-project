@@ -1,4 +1,7 @@
 module.exports = {
-  extends: [require.resolve('amper-scripts/config/eslint')],
-  root: true
+  extends: ['next', require.resolve('amper-scripts/config/eslint')],
+  root: true,
+  rules: {
+    'import/no-anonymous-default-export': 'off'
+  }
 };

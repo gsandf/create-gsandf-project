@@ -33,19 +33,21 @@ function Posts({ data }: Props) {
         <BasicGrid columns={[1, , 2, 3]} spacing={[4, , 6]}>
           {data.posts.nodes.map(({ featuredImage, slug, title }) => (
             <Link href={`/posts/${slug}`} key={slug}>
-              <PostBox
-                background={featuredImage?.node.sourceUrl ?? ''}
-                $bgColor="dark"
-                $color="onDark"
-                $p={8}
-              >
-                <Text
-                  dangerouslySetInnerHTML={{ __html: title }}
-                  maxLineCount={2}
-                  $fontSize={5}
-                  $fontWeight="bold"
-                />
-              </PostBox>
+              <a style={{ textDecoration: 'none' }}>
+                <PostBox
+                  background={featuredImage?.node.sourceUrl ?? ''}
+                  $bgColor="dark"
+                  $color="onDark"
+                  $p={8}
+                >
+                  <Text
+                    dangerouslySetInnerHTML={{ __html: title }}
+                    maxLineCount={2}
+                    $fontSize={5}
+                    $fontWeight="bold"
+                  />
+                </PostBox>
+              </a>
             </Link>
           ))}
         </BasicGrid>
