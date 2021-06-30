@@ -1,7 +1,4 @@
 module.exports = {
-  extends: ['gsandf-typescript'],
-  parserOptions: {
-    project: './tsconfig.json'
-  },
+  extends: [require.resolve('amper-scripts/config/eslint')],
   root: true
 };

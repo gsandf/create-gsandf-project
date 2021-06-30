@@ -21,10 +21,9 @@
   },
   "devDependencies": {
     "@prettier/plugin-php": "^0.17.1",
-    "amper-scripts": "^1.0.0",
+    "amper-scripts": "^1.2.3",
     "env-cmd": "^10.1.0",
     "eslint": "^7.29.0",
-    "eslint-config-gsandf-typescript": "^1.0.1",
     "npm-run-all": "^4.1.5",
     "pm2": "^5.1.0",
     "prettier": "^2.3.1"
