@@ -4323,9 +4323,9 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-"php-parser@git+https://github.com/glayzzle/php-parser.git#cca83041d938b972c7ef74648f29de03777b0ea4":
+"php-parser@https://github.com/glayzzle/php-parser#cca83041d938b972c7ef74648f29de03777b0ea4":
   version "3.0.2"
-  resolved "git+https://github.com/glayzzle/php-parser.git#cca83041d938b972c7ef74648f29de03777b0ea4"
+  resolved "https://github.com/glayzzle/php-parser#cca83041d938b972c7ef74648f29de03777b0ea4"
 
 picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.2, picomatch@^2.2.3:
   version "2.3.0"
