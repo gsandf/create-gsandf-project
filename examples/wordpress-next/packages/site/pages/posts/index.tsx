@@ -1,8 +1,8 @@
 import { BasicGrid, Box, Container, Text } from '@gsandf/ui';
-import { InferGetServerSidePropsType } from 'next';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
 import React from 'react';
-import { apiFetch } from '../../api';
+import { apiFetch, defaultCacheTime } from '../../api';
 import { PostBox } from '../../components/Posts/components';
 import BasicTemplate from '../../templates/Basic';
 
@@ -18,9 +18,9 @@ interface PostProps {
   };
 }
 
-type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
-function Posts({ data }: Props) {
+function Posts(props: Props) {
   return (
     <BasicTemplate>
       <Box as="header" $bgColor="primary" $color="onPrimary" $py={28}>
@@ -31,7 +31,7 @@ function Posts({ data }: Props) {
 
       <Container $py={16}>
         <BasicGrid columns={[1, , 2, 3]} spacing={[4, , 6]}>
-          {data.posts.nodes.map(({ featuredImage, slug, title }) => (
+          {props.posts.nodes.map(({ featuredImage, slug, title }) => (
             <Link href={`/posts/${slug}`} key={slug}>
               <a style={{ textDecoration: 'none' }}>
                 <PostBox
@@ -56,8 +56,8 @@ function Posts({ data }: Props) {
   );
 }
 
-export async function getServerSideProps() {
-  const props = await apiFetch<PostProps>({
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await apiFetch<PostProps>({
     query: /* GraphQL */ `
       query getPosts {
         posts {
@@ -75,7 +75,10 @@ export async function getServerSideProps() {
     `
   });
 
-  return { props };
-}
+  return {
+    props: response.data,
+    revalidate: defaultCacheTime
+  };
+};
 
 export default Posts;
