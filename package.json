@@ -11,7 +11,7 @@
     "got": "^11.8.2",
     "meow": "^10.0.1",
     "promisepipe": "^3.0.0",
-    "tar": "^6.1.0"
+    "tar": "^6.1.2"
   },
   "devDependencies": {
     "amper-scripts": "^1.2.3",
