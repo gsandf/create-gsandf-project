@@ -1,13 +1,14 @@
 <?php
 
+namespace GSF\Theme;
+
 /**
  * Customize the WordPress post link behavior
- * @param $link WordPress preview link
- * @param $post WordPress post to process
+ * @param string $link WordPress preview link
+ * @param WP_Post $post WordPress post to process
  * @return string Link to post on headless server
  */
-function set_post_link($link, $post)
-{
+function set_post_link($link, $post) {
   if ($post->post_status === 'draft') {
     [$template, $postName] = get_sample_permalink($post);
     $link = str_replace('%postname%', $postName, $template);
@@ -22,4 +23,4 @@ function set_post_link($link, $post)
   return "{$url['scheme']}://{$url['host']}:{$url['port']}{$url['path']}?{$url['query']}";
 }
 
-add_filter('post_link', 'set_post_link', 10, 2);
+add_filter('post_link', set_post_link::class, 10, 2);
