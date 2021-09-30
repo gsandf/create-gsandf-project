@@ -4,10 +4,11 @@
 node_modules
 vendor
 
-# production
+# built code
 build
 dist
 .next
+/packages/wordpress
 
 # misc
 .DS_Store

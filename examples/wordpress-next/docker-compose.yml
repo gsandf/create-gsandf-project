@@ -1,0 +1,54 @@
+version: '3.9'
+
+services:
+  nextjs:
+    image: node:16
+    env_file: .env
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
+    command: yarn site dev
+
+  wordpress:
+    image: wordpress:5.8
+    env_file: .env
+    restart: unless-stopped
+    ports:
+      - 3001:80
+    volumes:
+      - ./packages/wordpress:/var/www/html
+      - ./packages/wordpress-theme:/var/www/html/wp-content/themes/custom-theme
+
+  db:
+    image: mariadb:latest
+    env_file: .env
+    ports:
+      - 3306:3306
+    restart: unless-stopped
+    volumes:
+      - db:/var/lib/mysql
+    profiles:
+      - local
+
+  adminer:
+    image: adminer:latest
+    restart: unless-stopped
+    ports:
+      - 3002:8080
+    env_file: .env
+    profiles:
+      - local
+
+  wpcli:
+    image: wordpress:cli-2.5.0
+    env_file: .env
+    volumes:
+      - ./packages/wordpress:/var/www/html
+    profiles:
+      - cli
+
+volumes:
+  db:

@@ -1,5 +1,10 @@
 <?php
 
+// Stop redirecting all pages. This WordPress server should act as an API
+// source. NOTE: this also allows the WordPress instance to be accessed through
+// other host names.
+remove_filter('template_redirect', 'redirect_canonical');
+
 // Keep Categories in hierarchical order after checked
 require_once 'inc/categories.php';
 
@@ -20,7 +25,3 @@ require_once 'inc/preview-post-link.php';
 
 // Enable Basic Auth for the WordPress API
 require_once 'inc/enable-basic-auth.php';
-
-if (defined('WP_CLI') && WP_CLI) {
-  require_once 'inc/plugin-restore-cli.php';
-}

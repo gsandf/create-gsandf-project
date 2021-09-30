@@ -24,7 +24,7 @@ export type GraphQLResponse<Data = unknown> =
   | GraphQLErrorResponse
   | GraphQLSuccessResponse<Data>;
 
-const graphqlEndpoint = absoluteURL('/graphql');
+const graphqlEndpoint = absoluteURL('/index.php?graphql');
 
 /** Time (in seconds) to cache content. Note, this is not in milliseconds. */
 export const defaultCacheTime = 600; // 10 minutes
@@ -42,6 +42,11 @@ export const hasErrors = (
 ): response is GraphQLErrorResponse =>
   'errors' in response && response.errors !== undefined;
 
+const isValidResponse = <Data = unknown>(
+  response: unknown
+): response is GraphQLResponse<Data> =>
+  typeof response === 'object' && ('data' in response || 'errors' in response);
+
 export async function apiFetch<Data = unknown>({
   query,
   variables
@@ -53,7 +58,7 @@ export async function apiFetch<Data = unknown>({
     })
     .then(response => response.data);
 
-  if (hasErrors(response)) {
+  if (!isValidResponse(response) || hasErrors(response)) {
     throw new Error(getErrorMessage(response));
   }
 
