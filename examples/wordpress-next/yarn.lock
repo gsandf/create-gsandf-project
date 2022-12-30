@@ -642,7 +642,7 @@ amp@0.3.1, amp@~0.3.1:
   resolved "https://registry.yarnpkg.com/amp/-/amp-0.3.1.tgz#6adf8d58a74f361e82c1fa8d389c079e139fc47d"
   integrity sha1-at+NWKdPNh6CwfqNOJwHnhOfxH0=
 
-amper-scripts@^1.2.3, amper-scripts@^1.2.4:
+amper-scripts@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/amper-scripts/-/amper-scripts-1.2.4.tgz#f1c7f8887419b3ab405a8a846a4254165f5f71af"
   integrity sha512-+Gpu5Ck2VQJtee+W+I4Z9t8BkskoyA3izPWz6mqY9J+veNJdPRi/J3V4bwQHihF7qlcNeL+pwlBpjufrB/wYqw==
@@ -2447,9 +2447,9 @@ fast-glob@^3.1.1:
     micromatch "^4.0.4"
 
 fast-json-patch@^3.0.0-1:
-  version "3.0.0-1"
-  resolved "https://registry.yarnpkg.com/fast-json-patch/-/fast-json-patch-3.0.0-1.tgz#4c68f2e7acfbab6d29d1719c44be51899c93dabb"
-  integrity sha512-6pdFb07cknxvPzCeLsFHStEy+MysPJPgZQ9LbQ/2O67unQF93SNqfdSqnPPl71YMHX+AD8gbl7iuoGFzHEdDuw==
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/fast-json-patch/-/fast-json-patch-3.1.1.tgz#85064ea1b1ebf97a3f7ad01e23f9337e72c66947"
+  integrity sha512-vf6IHUX2SBcA+5/+4883dsIjpBTqmfBjmYiWK1savxQmFk4JfBMLa7ynTYOs1Rolp/T1betJxHiGD3g1Mn8lUQ==
 
 fast-json-stable-stringify@^2.0.0:
   version "2.1.0"
